@@ -9,7 +9,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 import { GlobalActionKeys } from '../store/actions';
-import store from '../store';
+import { store } from '../store';
 
 @Component
 export default class HelloWorld extends Vue {
