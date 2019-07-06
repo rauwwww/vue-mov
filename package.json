@@ -34,7 +34,7 @@
     "vuex-class": "^0.3.2"
   },
   "devDependencies": {
-    "@types/jest": "^23.1.4",
+    "@types/jest": "^24.0.15",
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-e2e-nightwatch": "^3.8.0",
     "@vue/cli-plugin-pwa": "^3.8.0",
