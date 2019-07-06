@@ -3,19 +3,11 @@
     <!-- Cute tiny form -->
     <div class="form">
       <label for="field-name" class="label">Name</label>
-      <input
-        v-model="name"
-        placeholder="Type a name"
-        class="input"
-        id="field-name"
-      >
+      <input v-model="name" placeholder="Type a name" class="input" id="field-name" />
     </div>
 
     <!-- Apollo watched Graphql query -->
-    <ApolloQuery
-      :query="require('../graphql/HelloWorld.gql')"
-      :variables="{ name }"
-    >
+    <ApolloQuery :query="require('../graphql/HelloWorld.gql')" :variables="{ name }">
       <template slot-scope="{ result: { loading, error, data } }">
         <!-- Loading -->
         <div v-if="loading" class="loading apollo">Loading...</div>
@@ -32,9 +24,7 @@
     </ApolloQuery>
 
     <!-- Tchat example -->
-    <ApolloQuery
-      :query="require('../graphql/Messages.gql')"
-    >
+    <ApolloQuery :query="require('../graphql/Messages.gql')">
       <ApolloSubscribeToMore
         :document="require('../graphql/MessageAdded.gql')"
         :update-query="onMessageAdded"
@@ -42,13 +32,7 @@
 
       <div slot-scope="{ result: { data } }">
         <template v-if="data">
-          <div
-            v-for="message of data.messages"
-            :key="message.id"
-            class="message"
-          >
-            {{ message.text }}
-          </div>
+          <div v-for="message of data.messages" :key="message.id" class="message">{{ message.text }}</div>
         </template>
       </div>
     </ApolloQuery>
@@ -66,86 +50,66 @@
       <template slot-scope="{ mutate }">
         <form v-on:submit.prevent="formValid && mutate()">
           <label for="field-message">Message</label>
-          <input
-            id="field-message"
-            v-model="newMessage"
-            placeholder="Type a message"
-            class="input"
-          >
+          <input id="field-message" v-model="newMessage" placeholder="Type a message" class="input" />
         </form>
       </template>
     </ApolloMutation>
 
     <div class="images">
-      <div
-        v-for="file of files"
-        :key="file.id"
-        class="image-item"
-      >
-        <img :src="`${$filesRoot}/${file.path}`" class="image"/>
+      <div v-for="file of files" :key="file.id" class="image-item">
+        <img :src="`${$filesRoot}/${file.path}`" class="image" />
       </div>
     </div>
 
     <div class="image-input">
       <label for="field-image">Image</label>
-      <input
-        id="field-image"
-        type="file"
-        accept="image/*"
-        required
-        @change="onUploadImage"
-      >
+      <input id="field-image" type="file" accept="image/*" required @change="onUploadImage" />
     </div>
   </div>
 </template>
 
-<script>
-import FILES from '../graphql/Files.gql'
-import UPLOAD_FILE from '../graphql/UploadFile.gql'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
+import { GlobalActionKeys } from '../store/actions';
+import { store } from '../store';
+import FILES from '../graphql/Files.gql';
+import UPLOAD_FILE from '../graphql/UploadFile.gql';
 
-export default {
-  data () {
+@Component
+export default class ApolloExample extends Vue {
+  name: any = 'Anne';
+  newMessage: any = '';
+  apollo: object = {
+    files: FILES
+  };
+
+  get formValid() {
+    return this.newMessage;
+  }
+
+  onMessageAdded(previousResult: any, { subscriptionData }) {
     return {
-      name: 'Anne',
-      newMessage: '',
+      messages: [...previousResult.messages, subscriptionData.data.messageAdded]
+    };
+  }
+
+  async onUploadImage({ target }) {
+    if (!target.validity.valid) {
+      return;
     }
-  },
-
-  apollo: {
-    files: FILES,
-  },
-
-  computed: {
-    formValid () {
-      return this.newMessage
-    },
-  },
-
-  methods: {
-    onMessageAdded (previousResult, { subscriptionData }) {
-      return {
-        messages: [
-          ...previousResult.messages,
-          subscriptionData.data.messageAdded,
-        ],
+    await this.$apollo.mutate({
+      mutation: UPLOAD_FILE,
+      variables: {
+        file: target.files[0]
+      },
+      update: (store, { data: { singleUpload } }) => {
+        const data = store.readQuery({ query: FILES });
+        data.files.push(singleUpload);
+        store.writeQuery({ query: FILES, data });
       }
-    },
-
-    async onUploadImage ({ target }) {
-      if (!target.validity.valid) return
-      await this.$apollo.mutate({
-        mutation: UPLOAD_FILE,
-        variables: {
-          file: target.files[0],
-        },
-        update: (store, { data: { singleUpload } }) => {
-          const data = store.readQuery({ query: FILES })
-          data.files.push(singleUpload)
-          store.writeQuery({ query: FILES, data })
-        },
-      })
-    }
-  },
+    });
+  }
 }
 </script>
 
