@@ -51,7 +51,7 @@ const defaultOptions = {
 };
 
 // Call this in the Vue app file
-export function createProvider(options = {}) {
+export function createProvider(options: any = {}) {
   // Create apollo client
   const { apolloClient, wsClient } = createApolloClient({
     ...defaultOptions,
@@ -67,7 +67,7 @@ export function createProvider(options = {}) {
         // fetchPolicy: 'cache-and-network',
       }
     },
-    errorHandler(error) {
+    errorHandler(error: any) {
       // eslint-disable-next-line no-console
       console.log(
         '%cError',
@@ -85,7 +85,9 @@ export async function onLogin(apolloClient: { wsClient: any; resetStore: () => v
   if (typeof localStorage !== 'undefined' && token) {
     localStorage.setItem(AUTH_TOKEN, token);
   }
-  if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
+  if (apolloClient.wsClient) {
+    restartWebsockets(apolloClient.wsClient);
+  }
   try {
     await apolloClient.resetStore();
   } catch (e) {
@@ -99,7 +101,9 @@ export async function onLogout(apolloClient: { wsClient: any; resetStore: () => 
   if (typeof localStorage !== 'undefined') {
     localStorage.removeItem(AUTH_TOKEN);
   }
-  if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
+  if (apolloClient.wsClient) {
+    restartWebsockets(apolloClient.wsClient);
+  }
   try {
     await apolloClient.resetStore();
   } catch (e) {
