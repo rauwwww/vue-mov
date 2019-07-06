@@ -60,6 +60,7 @@
         "allow-destructuring": true
       }
     ],
+    "no-console": false,
     "no-trailing-whitespace": true,
     "no-unused-variable": [
       true,
