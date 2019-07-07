@@ -19,8 +19,13 @@
     "apollo-client": "^2.6.3",
     "apollo-link": "^1.2.12",
     "apollo-link-http": "^1.5.15",
+    "apollo-server-express": "^2.6.7",
+    "body-parser": "^1.19.0",
     "core-js": "^2.6.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "graphql": "^14.4.2",
+    "graphql-tools": "^4.0.5",
     "graphql-type-json": "^0.2.1",
     "lowdb": "^1.0.0",
     "mkdirp": "^0.5.1",
@@ -96,6 +101,9 @@
       "ts-jest": {
         "babelConfig": true
       }
+    },
+    "engines": {
+      "node": ">= 10.16.0"
     }
   }
 }
