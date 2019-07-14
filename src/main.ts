@@ -3,8 +3,10 @@ import App from './App.vue';
 import router from './router';
 import { store } from './store/index';
 
+// config
+import './config/vue-apollo';
 import './registerServiceWorker';
-import { createProvider } from './vue-apollo';
+import { createProvider } from './config/vue-apollo';
 
 Vue.config.productionTip = false;
 
