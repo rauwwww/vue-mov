@@ -70,11 +70,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
-import { GlobalActionKeys } from '../store/actions';
-import { store } from '../store';
 import FILES from '../graphql/Files.gql';
-import * as UPLOAD_FILE from '../graphql/Files.gql';
+import UPLOAD_FILE from '../graphql/Files.gql';
 
 @Component
 export default class ApolloExample extends Vue {
