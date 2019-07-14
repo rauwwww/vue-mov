@@ -74,12 +74,13 @@ import { Getter } from 'vuex-class';
 import { GlobalActionKeys } from '../store/actions';
 import { store } from '../store';
 import FILES from '../graphql/Files.gql';
-import UPLOAD_FILE from '../graphql/UploadFile.gql';
+import * as UPLOAD_FILE from '../graphql/Files.gql';
 
 @Component
 export default class ApolloExample extends Vue {
   name: any = 'Anne';
   newMessage: any = '';
+  subscriptionData: any = '';
   apollo: object = {
     files: FILES
   };
@@ -88,14 +89,14 @@ export default class ApolloExample extends Vue {
     return this.newMessage;
   }
 
-  onMessageAdded(previousResult: any, { subscriptionData }) {
+  onMessageAdded(previousResult: any, { subscriptionData }: { subscriptionData: any }) {
     return {
       messages: [...previousResult.messages, subscriptionData.data.messageAdded]
     };
   }
 
-  async onUploadImage({ target }) {
-    if (!target.validity.valid) {
+  async onUploadImage({ target }: { target: any }) {
+    if (target && !target.validity.valid) {
       return;
     }
     await this.$apollo.mutate({
@@ -103,10 +104,13 @@ export default class ApolloExample extends Vue {
       variables: {
         file: target.files[0]
       },
+      /* tslint:disable */
       update: (store, { data: { singleUpload } }) => {
-        const data = store.readQuery({ query: FILES });
-        data.files.push(singleUpload);
-        store.writeQuery({ query: FILES, data });
+        const data: any = store.readQuery({ query: FILES });
+        if (data) {
+          data.files.push(singleUpload);
+          store.writeQuery({ query: FILES, data });
+        }
       }
     });
   }

@@ -53,7 +53,7 @@ const defaultOptions = {
 // Call this in the Vue app file
 export function createProvider(options: any = {}) {
   // Create apollo client
-  const { apolloClient, wsClient } = createApolloClient({
+  const { apolloClient, wsClient }: any = createApolloClient({
     ...defaultOptions,
     ...options
   });
