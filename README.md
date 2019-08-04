@@ -1,27 +1,32 @@
-# vue-mov
+# vue-mov Appollo
 
-## Project setup
+    Todo - Add description
 
+## Setup
+
+### requisites
+
+Node v10.16+
+yarn
+
+Install the dependencies and devDependencies and start the server.
+
+### Run project
+
+Build, Compiles and hot-reloads for development:
+
+```sh
+$ yarn
+$ yarn serve
+
+### Run Apollo server
+$ yarn apollo:start
 ```
-yarn install
-```
 
-### Compiles and hot-reloads for development
+### Run Apollo server
 
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
-```
-
-### Run your tests
-
-```
-yarn test
+```sh
+$ yarn apollo:start
 ```
 
 ### Lints and fixes files
@@ -30,24 +35,11 @@ yarn test
 yarn lint
 ```
 
-### Run your end-to-end tests
+### Test
 
-```
-yarn test:e2e
-```
+Run end-to-end + unit tests
 
-### Run your unit tests
-
-```
-yarn test:unit
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-### Apollo uses vue apollo CLI to spin up the graphQl api
-
-```
-    apollo:start
+```sh
+$ yarn test:e2e
+$ yarn test:unit
 ```
