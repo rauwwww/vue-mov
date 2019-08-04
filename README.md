@@ -18,9 +18,6 @@ Build, Compiles and hot-reloads for development:
 ```sh
 $ yarn
 $ yarn serve
-
-### Run Apollo server
-$ yarn apollo:start
 ```
 
 ### Run Apollo server
