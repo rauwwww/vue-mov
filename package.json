@@ -40,6 +40,7 @@
     "schemaglue": "^4.0.4",
     "shortid": "^2.2.8",
     "ts-transform-graphql-tag": "^0.2.1",
+    "typeface-roboto": "^0.0.75",
     "vue": "^2.6.10",
     "vue-apollo": "^3.0.0-rc.1",
     "vue-class-component": "^7.0.2",

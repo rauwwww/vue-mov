@@ -3,6 +3,11 @@ import App from './App.vue';
 import router from './router';
 import { store } from './store/index';
 
+// custom styles
+import '@/assets/styles/spacing.scss';
+import '@/assets/styles/material-icons.scss';
+import '@/assets/styles/main.scss';
+
 // plugins
 import './plugins/vue-apollo';
 import './plugins/vuesax';
