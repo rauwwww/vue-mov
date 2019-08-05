@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add jwt-decode
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types/vue-sidebar-menu
 
 PATH: 
-  C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu;C:\Users\Someone\Desktop\Conemu\ConEmu;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files (x86)\GtkSharp\2.12\bin;D:\xamp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;D:\XAMPP\php;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Git\cmd;C:\Program Files (x86)\dotnet\;C:\Users\Someone\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Common Files\Tom Sawyer Software\8.0.0;C:\Program Files (x86)\Common Files\Win Wrap\10.25.004;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Users\Someone\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Someone\AppData\Local\Programs\Python\Python36-32\;C:\Users\Someone\AppData\Local\Microsoft\WindowsApps;C:\Users\Someone\AppData\Local\atom\bin;C:\Users\Someone\AppData\Roaming\Composer\vendor\bin;D:\Docker Toolbox;D:\Microsoft VS Code\bin;C:\Users\Someone\.dotnet\tools;C:\Users\Someone\AppData\Roaming\nvm;C:\Users\Someone\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Someone\AppData\Local\Microsoft\WindowsApps;C:\Users\Someone\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\Someone\AppData\Local\Yarn\bin;C:\Users\Someone\AppData\Roaming\npm
+  C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu;C:\Users\Someone\Desktop\Conemu\ConEmu;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files (x86)\GtkSharp\2.12\bin;D:\xamp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;D:\XAMPP\php;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Git\cmd;C:\Program Files (x86)\dotnet\;C:\Users\Someone\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Common Files\Tom Sawyer Software\8.0.0;C:\Program Files (x86)\Common Files\Win Wrap\10.25.004;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Users\Someone\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Someone\AppData\Local\Programs\Python\Python36-32\;C:\Users\Someone\AppData\Local\Microsoft\WindowsApps;C:\Users\Someone\AppData\Local\atom\bin;C:\Users\Someone\AppData\Roaming\Composer\vendor\bin;D:\Docker Toolbox;D:\Microsoft VS Code\bin;C:\Users\Someone\.dotnet\tools;C:\Users\Someone\AppData\Roaming\nvm;C:\Users\Someone\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Someone\AppData\Local\Microsoft\WindowsApps;C:\Users\Someone\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\Someone\AppData\Local\Yarn\bin;C:\Users\Someone\AppData\Roaming\npm
 
 Yarn version: 
   1.16.0
@@ -14,12 +14,22 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\Someone\Desktop\reacttest\vue-project\vue-mov\node_modules\node-sass\vendor\win32-x64-72\binding.node'
+  Error: https://registry.yarnpkg.com/@types%2fvue-sidebar-menu: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65200:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129590:22)
+      at Request.emit (events.js:200:13)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130562:10)
+      at Request.emit (events.js:200:13)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130484:12)
+      at Object.onceWrapper (events.js:288:20)
+      at IncomingMessage.emit (events.js:205:15)
+      at endReadableNT (_stream_readable.js:1154:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:9)
 
 npm manifest: 
   {
     "name": "vue-mov",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": true,
     "scripts": {
       "serve": "vue-cli-service serve",
@@ -34,27 +44,37 @@ npm manifest:
     },
     "dependencies": {
       "@types/graphql": "^14.2.2",
+      "@types/lowdb": "^1.0.9",
+      "@types/mkdirp": "^0.5.2",
+      "@types/shortid": "^0.0.29",
       "apollo-cache-inmemory": "^1.6.2",
       "apollo-client": "^2.6.3",
       "apollo-link": "^1.2.12",
       "apollo-link-http": "^1.5.15",
       "apollo-server-express": "^2.6.7",
       "body-parser": "^1.19.0",
+      "buefy": "^0.8.2",
       "core-js": "^2.6.5",
       "cors": "^2.8.5",
+      "dotenv": "^8.0.0",
       "express": "^4.17.1",
       "graphql": "^14.4.2",
       "graphql-tools": "^4.0.5",
       "graphql-type-json": "^0.2.1",
+      "jwt-decode": "^2.2.0",
+      "lodash": "^4.17.14",
       "lowdb": "^1.0.0",
       "mkdirp": "^0.5.1",
       "register-service-worker": "^1.6.2",
+      "schemaglue": "^4.0.4",
       "shortid": "^2.2.8",
+      "ts-transform-graphql-tag": "^0.2.1",
       "vue": "^2.6.10",
       "vue-apollo": "^3.0.0-rc.1",
       "vue-class-component": "^7.0.2",
       "vue-property-decorator": "^8.2.1",
       "vue-router": "^3.0.3",
+      "vue-sidebar-menu": "^3.12.2",
       "vuex": "^3.0.1",
       "vuex-class": "^0.3.2"
     },
@@ -1221,10 +1241,22 @@ Lockfile:
     dependencies:
       "@types/jest-diff" "*"
   
+  "@types/lodash@*":
+    version "4.14.136"
+    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.136.tgz#413e85089046b865d960c9ff1d400e04c31ab60f"
+    integrity sha512-0GJhzBdvsW2RUccNHOBkabI8HZVdOXmXbXhuKlDEd5Vv12P7oAVGfomGp3Ne21o5D/qu1WmthlNKFaoZJJeErA==
+  
   "@types/long@^4.0.0":
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.0.tgz#719551d2352d301ac8b81db732acb6bdc28dbdef"
     integrity sha512-1w52Nyx4Gq47uuu0EVcsHBxZFJgurQ+rTKS3qMHxR1GY2T8c2AJYd6vZoZ9q1rupaDjU0yT+Jc2XTyXkjeMA+Q==
+  
+  "@types/lowdb@^1.0.9":
+    version "1.0.9"
+    resolved "https://registry.yarnpkg.com/@types/lowdb/-/lowdb-1.0.9.tgz#1f6c27df72dd1c64522cc9a4566796d2dd058d38"
+    integrity sha512-LBRG5EPXFOJDoJc9jACstMhtMP+u+UkPYllBeGQXXKiaHc+uzJs9+/Aynb/5KkX33DtrIiKyzNVTPQc/4RcD6A==
+    dependencies:
+      "@types/lodash" "*"
   
   "@types/mime@*":
     version "2.0.1"
@@ -1235,6 +1267,13 @@ Lockfile:
     version "3.0.3"
     resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
     integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
+  
+  "@types/mkdirp@^0.5.2":
+    version "0.5.2"
+    resolved "https://registry.yarnpkg.com/@types/mkdirp/-/mkdirp-0.5.2.tgz#503aacfe5cc2703d5484326b1b27efa67a339c1f"
+    integrity sha512-U5icWpv7YnZYGsN4/cmh3WD2onMY0aJIiTE6+51TwJCttdHvtCYmkBNOobHlXwrJRL0nkH9jH4kD+1FAdMN4Tg==
+    dependencies:
+      "@types/node" "*"
   
   "@types/node@*":
     version "12.0.10"
@@ -1278,6 +1317,11 @@ Lockfile:
     dependencies:
       "@types/express-serve-static-core" "*"
       "@types/mime" "*"
+  
+  "@types/shortid@^0.0.29":
+    version "0.0.29"
+    resolved "https://registry.yarnpkg.com/@types/shortid/-/shortid-0.0.29.tgz#8093ee0416a6e2bf2aa6338109114b3fbffa0e9b"
+    integrity sha1-gJPuBBam4r8qpjOBCRFLP7/6Dps=
   
   "@types/strip-bom@^3.0.0":
     version "3.0.0"
@@ -3027,6 +3071,13 @@ Lockfile:
     dependencies:
       node-int64 "^0.4.0"
   
+  buefy@^0.8.2:
+    version "0.8.2"
+    resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.8.2.tgz#26bfc931c8c7fbe5a90d4b814a8205501eee816a"
+    integrity sha512-fS4sXYE0ge7fN5tP9k67j1fSCS/yxbTrnEhJ5MBt89gcbmVe5x8/SAXdADjx5W4SdERtjKjE9mzoIoRb+ZC29Q==
+    dependencies:
+      bulma "0.7.5"
+  
   buffer-from@1.x, buffer-from@^1.0.0, buffer-from@^1.1.0:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
@@ -3060,6 +3111,11 @@ Lockfile:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
     integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
+  
+  bulma@0.7.5:
+    version "0.7.5"
+    resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
+    integrity sha512-cX98TIn0I6sKba/DhW0FBjtaDpxTelU166pf7ICXpCCuplHWyu6C9LYZmL5PEsnePIeJaiorsTEzzNk3Tsm1hw==
   
   busboy@^0.3.1:
     version "0.3.1"
@@ -7514,6 +7570,11 @@ Lockfile:
       json-schema "0.2.3"
       verror "1.10.0"
   
+  jwt-decode@^2.2.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+    integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
+  
   keyv@3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.0.0.tgz#44923ba39e68b12a7cec7df6c3268c031f2ef373"
@@ -7943,6 +8004,11 @@ Lockfile:
     version "4.17.11"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
     integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  
+  lodash@^4.17.14:
+    version "4.17.14"
+    resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+    integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
   
   log-symbols@^1.0.2:
     version "1.0.2"
@@ -10623,6 +10689,14 @@ Lockfile:
       ajv-errors "^1.0.0"
       ajv-keywords "^3.1.0"
   
+  schemaglue@^4.0.4:
+    version "4.0.4"
+    resolved "https://registry.yarnpkg.com/schemaglue/-/schemaglue-4.0.4.tgz#535e07170088720559c224a3694c58741eec707a"
+    integrity sha512-/tP7rbyKOb3irFJgr7o7aHOquDTIqp+XyBGSewtfmbKr4NOO+90DeaQnU/XL/lqywhJyBw1rsEjKBi7eLV8lRA==
+    dependencies:
+      glob "^7.1.2"
+      shortid "^2.2.8"
+  
   scss-tokenizer@^0.2.3:
     version "0.2.3"
     resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.2.3.tgz#8eb06db9a9723333824d3f5530641149847ce5d1"
@@ -11765,6 +11839,11 @@ Lockfile:
       source-map-support "^0.5.6"
       yn "^3.0.0"
   
+  ts-transform-graphql-tag@^0.2.1:
+    version "0.2.1"
+    resolved "https://registry.yarnpkg.com/ts-transform-graphql-tag/-/ts-transform-graphql-tag-0.2.1.tgz#f596c491196b6a6a65b65a8b99bf6e2314c78017"
+    integrity sha512-gciNzCpVafccayI/VQKU2ROaol4gMpz0t5sAW/jzG/J/wnjPYCn06yKzlM4mkQ5tjCvPmFuZnLYF4i0tUiIiMQ==
+  
   tsconfig@^7.0.0:
     version "7.0.0"
     resolved "https://registry.yarnpkg.com/tsconfig/-/tsconfig-7.0.0.tgz#84538875a4dc216e5c4a5432b3a4dec3d54e91b7"
@@ -12279,6 +12358,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.6.tgz#2e4f0f9cbb0b96d0205ab2690cfe588935136ac3"
     integrity sha512-Ox0ciFLswtSGRTHYhGvx2L44sVbTPNS+uD2kRISuo8B39Y79rOo0Kw0hzupTmiVtftQYCZl87mwldhh2L9Aquw==
   
+  vue-sidebar-menu@^3.12.2:
+    version "3.12.2"
+    resolved "https://registry.yarnpkg.com/vue-sidebar-menu/-/vue-sidebar-menu-3.12.2.tgz#48411c62e13d076179955a8908d27cc0cb486522"
+    integrity sha512-DxxvsXHrpg2e/BUf8ihak5N5keTPns97GMNL9N7VMF9yVvQFK7I0nCIYmDF7HlVO8Sz6AcQEONrEwVxE8PklVw==
+    dependencies:
+      vue "^2.5.21"
+  
   vue-style-loader@^4.1.0:
     version "4.1.2"
     resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
@@ -12300,7 +12386,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
     integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
   
-  vue@^2.6.10:
+  vue@^2.5.21, vue@^2.6.10:
     version "2.6.10"
     resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
     integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==

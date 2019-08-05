@@ -3,16 +3,24 @@ import App from './App.vue';
 import router from './router';
 import { store } from './store/index';
 
-// config
-import './config/vue-apollo';
+// plugins
+import './plugins/vue-apollo';
+import './plugins/buefy';
+
 import './registerServiceWorker';
-import { createProvider } from './config/vue-apollo';
+import { createProvider } from './plugins/vue-apollo';
 
 Vue.config.productionTip = false;
 
+// tslint:disable-next-line: no-unused-expression
 new Vue({
+  el: '#app',
   router,
   store,
+  template: '<App/>',
+  components: {
+    App
+  },
   apolloProvider: createProvider(),
-  render: (h) => h(App)
-}).$mount('#app');
+  render: (h: any) => h(App)
+});
