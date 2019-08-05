@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <MainMenu />
+    <MainMenu class="m-b-xl" />
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+@import '@/assets/styles/spacing.scss';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
