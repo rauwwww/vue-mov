@@ -6,8 +6,13 @@
 </template>
 
 <style lang="scss">
-@import '@/assets/styles/spacing.scss';
-@import '@/assets/styles/material-icons.scss';
+#app {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 </style>
 
 <script lang="ts">
