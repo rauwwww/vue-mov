@@ -42,12 +42,5 @@ import SideMenu from './SideMenu.vue';
 })
 export default class MainMenu extends Vue {
   @Provide() search: string = '';
-  @Provide() showNav: boolean = false;
-  @Provide() isActive: boolean = false;
-
-  get isSideMenuActive() {
-    console.log(this.isActive);
-    return this.isActive != this.isActive;
-  }
 }
 </script>
