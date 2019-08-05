@@ -1,33 +1,20 @@
 <template>
   <div>
-    <!-- Hero header: will stick at the top -->
-    <div class="hero-head">
-      <nav class="navbar">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/">
-            <img src="http://bulma.io/images/bulma-logo.png" alt="Logo" />
-          </a>
-          <!--
-    Using the v-on: directive to listen for the click event and toggle the data property showNav. Also, using the v-bind: directive to reactively update the class attribute 'is-active' based on the showNav property.
-          -->
-          <div class="navbar-burger" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-        <!--
-    Using the v-bind: directive to reactively update the class attribute 'is-active' based on the showNav property.
-        -->
-        <div class="navbar-menu" :class="{ 'is-active': showNav }">
-          <div class="navbar-end">
-            <a class="navbar-item" href="/about">About</a>
-            <a class="navbar-item" href="/path">Path</a>
-            <a class="navbar-item" href="/blog">Blog</a>
-          </div>
-        </div>
-      </nav>
-    </div>
+    <vs-navbar class="nabarx p-md">
+      <div slot="title">
+        <vs-navbar-title>Hello world</vs-navbar-title>
+
+        <SideMenu class="p-t-sm" />
+      </div>
+      <vs-navbar-item index="0">
+        <a href="#">Home</a>
+      </vs-navbar-item>
+      <vs-navbar-item index="1">
+        <a href="#">News</a>
+      </vs-navbar-item>
+
+      <vs-input icon="search" placeholder="search" v-model="search" />
+    </vs-navbar>
   </div>
 </template>
 
@@ -35,16 +22,32 @@
 .navbar-item {
   color: #4a4a4a !important;
 }
+.is-active {
+  display: block;
+}
+.hover:hover {
+  cursor: pointer;
+}
 </style>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
+import SideMenu from './SideMenu.vue';
 
 @Component({
   name: 'MainMenu',
-  components: {}
+  components: {
+    SideMenu
+  }
 })
 export default class MainMenu extends Vue {
-  showNav: boolean = false;
+  @Provide() search: string = '';
+  @Provide() showNav: boolean = false;
+  @Provide() isActive: boolean = false;
+
+  get isSideMenuActive() {
+    console.log(this.isActive);
+    return this.isActive != this.isActive;
+  }
 }
 </script>

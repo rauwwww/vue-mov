@@ -5,7 +5,7 @@ import { store } from './store/index';
 
 // plugins
 import './plugins/vue-apollo';
-import './plugins/buefy';
+import './plugins/vuesax';
 
 import './registerServiceWorker';
 import { createProvider } from './plugins/vue-apollo';

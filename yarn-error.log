@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types/vue-sidebar-menu
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types/vuesax
 
 PATH: 
   C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu\ConEmu\Scripts;C:\Users\Someone\Desktop\Conemu;C:\Users\Someone\Desktop\Conemu\ConEmu;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files (x86)\GtkSharp\2.12\bin;D:\xamp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;D:\XAMPP\php;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Git\cmd;C:\Program Files (x86)\dotnet\;C:\Users\Someone\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Common Files\Tom Sawyer Software\8.0.0;C:\Program Files (x86)\Common Files\Win Wrap\10.25.004;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Users\Someone\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Someone\AppData\Local\Programs\Python\Python36-32\;C:\Users\Someone\AppData\Local\Microsoft\WindowsApps;C:\Users\Someone\AppData\Local\atom\bin;C:\Users\Someone\AppData\Roaming\Composer\vendor\bin;D:\Docker Toolbox;D:\Microsoft VS Code\bin;C:\Users\Someone\.dotnet\tools;C:\Users\Someone\AppData\Roaming\nvm;C:\Users\Someone\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Someone\AppData\Local\Microsoft\WindowsApps;C:\Users\Someone\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\Someone\AppData\Local\Yarn\bin;C:\Users\Someone\AppData\Roaming\npm
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fvue-sidebar-menu: Not found
+  Error: https://registry.yarnpkg.com/@types%2fvuesax: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65200:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129590:22)
       at Request.emit (events.js:200:13)
@@ -74,7 +74,7 @@ npm manifest:
       "vue-class-component": "^7.0.2",
       "vue-property-decorator": "^8.2.1",
       "vue-router": "^3.0.3",
-      "vue-sidebar-menu": "^3.12.2",
+      "vuesax": "^3.9.0",
       "vuex": "^3.0.1",
       "vuex-class": "^0.3.2"
     },
@@ -12358,13 +12358,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.6.tgz#2e4f0f9cbb0b96d0205ab2690cfe588935136ac3"
     integrity sha512-Ox0ciFLswtSGRTHYhGvx2L44sVbTPNS+uD2kRISuo8B39Y79rOo0Kw0hzupTmiVtftQYCZl87mwldhh2L9Aquw==
   
-  vue-sidebar-menu@^3.12.2:
-    version "3.12.2"
-    resolved "https://registry.yarnpkg.com/vue-sidebar-menu/-/vue-sidebar-menu-3.12.2.tgz#48411c62e13d076179955a8908d27cc0cb486522"
-    integrity sha512-DxxvsXHrpg2e/BUf8ihak5N5keTPns97GMNL9N7VMF9yVvQFK7I0nCIYmDF7HlVO8Sz6AcQEONrEwVxE8PklVw==
-    dependencies:
-      vue "^2.5.21"
-  
   vue-style-loader@^4.1.0:
     version "4.1.2"
     resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
@@ -12386,10 +12379,18 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
     integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
   
-  vue@^2.5.21, vue@^2.6.10:
+  vue@^2.6.10, vue@^2.6.9:
     version "2.6.10"
     resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
     integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
+  
+  vuesax@^3.9.0:
+    version "3.9.0"
+    resolved "https://registry.yarnpkg.com/vuesax/-/vuesax-3.9.0.tgz#4283b70889c9e501dfe0a6b5bddc75ebccde7b89"
+    integrity sha512-QEtkCQYC6hNlPstkIh2douVq7mzH5WP2/L+EVkBiu+hkcr4GGPRWU2oHEH/LCf+yGssYJowy3JDsXRqpimQqbw==
+    dependencies:
+      chalk "^2.4.2"
+      vue "^2.6.9"
   
   vuex-class@^0.3.2:
     version "0.3.2"
