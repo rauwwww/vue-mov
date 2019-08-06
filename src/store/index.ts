@@ -4,6 +4,7 @@ import { mutations } from './mutations';
 import { actions } from './actions';
 import { getters } from './getters';
 import RootState from './state';
+import movies from './movies';
 
 Vue.use(Vuex);
 
@@ -12,7 +13,9 @@ export const store = new Vuex.Store({
   mutations,
   actions,
   getters,
-  modules: {}
+  modules: {
+    movies
+  }
 });
 
 export default module.exports;

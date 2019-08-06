@@ -31,7 +31,7 @@
 </style>
 
 <script lang="ts">
-import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
+import { Component, Vue, Provide } from 'vue-property-decorator';
 import SideMenu from './SideMenu.vue';
 
 @Component({
