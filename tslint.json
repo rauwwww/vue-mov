@@ -27,6 +27,8 @@
       true,
       140
     ],
+    "max-lines-per-function": ["error", 20],
+    "max-file-line-count": [true, 300],
     "member-access": false,
     "member-ordering": [
       true,
