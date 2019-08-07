@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const oemdbBaseUrl = 'http://www.omdbapi.com/?apikey=57472c69&';
 
-export async function oemdbReq(title?: string) {
-  const titleReq = `t=${title}`;
+export async function oemdbReq(params?: any) {
+  console.log(oemdbBaseUrl + params);
 
   axios
     .request<ServerData>({
-      url: oemdbBaseUrl + titleReq,
+      url: oemdbBaseUrl + params,
       transformResponse: (r: ServerResponse) => r.data
     })
     .then((response) => {

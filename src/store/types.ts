@@ -1,4 +1,5 @@
 import { IMoviesState } from './movies/movies.types';
+
 export interface IRootState {
   frontPageText: string;
   movies: IMoviesState;
