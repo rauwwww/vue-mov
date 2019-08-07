@@ -25,7 +25,7 @@
     "interface-name": false,
     "max-line-length": [
       true,
-      120
+      140
     ],
     "member-access": false,
     "member-ordering": [
