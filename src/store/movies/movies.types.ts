@@ -6,22 +6,14 @@ export interface IMovies {
   title: string;
 }
 
-// export enum IOEM {
-//   prefix = IOemdbReqPrefix.movieTitle,
-// }
-
 export class IOemdbReq {
-  private apiReqTypes: IOemdbReqPrefixes = {
-    movieTitle: '?t=',
-    imdbId: '?i='
+  private apiParamPrefix: any = {
+    imdbId: 'i=',
+    movieTitle: 't=',
+    type: 'type=',
+    releaseYear: 'y=',
+    plot: 'plot='
   };
-  // imdbId: string;
-  // movieTitle: string;
-  // type,
-  // releaseYear,
-  // plot,
-  // dataReturnType,
-  // page
 
   // constructor() {
   //   this.imdbId = `?i=`;
@@ -38,12 +30,11 @@ export class IOemdbReq {
   //   // }
   // }
 
-  public generateReqParams(payload: IOemdbReqPrefix) {
+  public generateReqParams(payload: IOemdbReqFor) {
     // return this.apiReqTypes.keys((el: IOemdbReqPrefix) => el.movieTitle === payload);
-    if (payload) {
-      if (payload.movieTitle) {
-        return this.apiReqTypes.movieTitle + payload.movieTitle;
-      }
+
+    if (payload.movieTitle) {
+      return this.apiParamPrefix.movieTitle + payload.movieTitle;
     }
   }
   // /**
@@ -51,53 +42,42 @@ export class IOemdbReq {
   //  * @param type movieTitle, imdbId, releaseYear, plot
   //  * @param searchString
   //  */
-  // reqParam(type: IOemdbReqPrefixes, searchString: string) {
-  //   switch (type) {
-  //     case 'movieTitle': {
-  //       return this.movieTitle + searchString;
-  //     }
-  //     case 'imdbId': {
-  //       return this.imdbId + searchString;
-  //     }
-  //     default: {
-  //       return this.imdbId + searchString;
-  //     }
-  //   }
-  // }
+  reqParam(payload: IOemdbReqFor) {
+    switch (payload) {
+      case payload.movieTitle: {
+        return this.apiParamPrefix.movieTitle + payload.movieTitle;
+      }
+      case payload.imdbId: {
+        return this.apiParamPrefix.imdbId + payload.imdbId;
+      }
+      case payload.page: {
+        return this.apiParamPrefix.page + payload.page;
+      }
+      default: {
+        return this.apiParamPrefix.imdbId + payload.imdbId;
+      }
+    }
+  }
 }
 
 /**
- * @IOemdbReqParams page range 1-100
+ * @imdbId string
+ * @movieTitle string
+ * @type 'movies' | 'series' | 'episodes'
+ * @releaseYear number
+ * @plot 'short' | 'full'
+ * @page number range 1-100
+ * @dataReturnType 'json' | 'xml'
  */
-export interface IOemdbReqPrefix {
+export interface IOemdbReqFor {
   imdbId?: string;
   movieTitle?: string;
   type?: IOemdbReqTypes;
-  releaseYear?: string;
+  releaseYear?: number;
   plot?: string;
   dataReturnType?: 'json' | 'xml';
   page?: number;
 }
-
-export enum IOemdbReqPrefixes {
-  imdbId = '?i=',
-  movieTitle = '?t=',
-  // type?: IOemdbReqTypes;
-  releaseYear = '?y=',
-  plot = '?plot='
-  // dataReturnType = 'json' | 'xml',
-  // page ?: number;
-}
-
-// export interface IOemdbReqPrefix {
-//   imdbId?: 'i';
-//   movieTitle?: 't';
-//   type?: IOemdbReqTypes;
-//   releaseYear?: 'y';
-//   plot?: 'plot';
-//   dataReturnType?: 'json' | 'xml';
-//   page?: number;
-// }
 
 export interface IOemdbReqTypes {
   type: 'type';
