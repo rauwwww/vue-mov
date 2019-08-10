@@ -8,56 +8,65 @@ export interface IMovies {
 
 export class IOemdbReq {
   private apiParamPrefix: any = {
-    imdbId: 'i=',
-    movieTitle: 't=',
-    type: 'type=',
-    releaseYear: 'y=',
-    plot: 'plot='
+    imdbId: '&i=',
+    movieTitle: '&t=',
+    type: '&type=',
+    releaseYear: '&y=',
+    plot: '&plot=',
+    page: '&page='
   };
 
-  // constructor() {
-  //   this.imdbId = `?i=`;
-  //   this.movieTitle = `?t=`;
-  //   //   this.reqPrefixes.movieTitle = 't';
-  //   //   (this.reqPrefixes.type = {
-  //   //     type: 'type',
-  //   //     typeOf: 'movies'
-  //   //   }),
-  //   //     (this.reqPrefixes.releaseYear = 'y'),
-  //   //     (this.reqPrefixes.plot = 'plot'),
-  //   //     (this.reqPrefixes.dataReturnType = 'json'),
-  //   //     (this.reqPrefixes.page = 10);
-  //   // }
-  // }
-
-  public generateReqParams(payload: IOemdbReqFor) {
+  public generateReqParams(payload: any) {
+    const returnString: any = [];
     // return this.apiReqTypes.keys((el: IOemdbReqPrefix) => el.movieTitle === payload);
+    console.log(payload, 'payload');
 
-    if (payload.movieTitle) {
-      return this.apiParamPrefix.movieTitle + payload.movieTitle;
-    }
+    const result = Object.keys(payload).map((key) => {
+      const reutn = { searchFor: key, val: payload[key] };
+      return reutn;
+    });
+
+    result.forEach((el) => {
+      if (el.searchFor === IOemdbReqTypes.movieTitle) {
+        returnString.push(this.apiParamPrefix.movieTitle + el.val);
+      }
+
+      if (el.searchFor === IOemdbReqTypes.imdbId) {
+        returnString.push(this.apiParamPrefix.imdbId + el.val);
+      }
+
+      if (el.searchFor === IOemdbReqTypes.plot) {
+        returnString.push(this.apiParamPrefix.plot + el.val);
+      }
+
+      if (el.searchFor === IOemdbReqTypes.page) {
+        returnString.push(this.apiParamPrefix.page + el.val);
+      }
+    });
+    console.log(result, 'mapped obj');
+    console.log(returnString.join(''));
   }
   // /**
   //  *
   //  * @param type movieTitle, imdbId, releaseYear, plot
   //  * @param searchString
   //  */
-  reqParam(payload: IOemdbReqFor) {
-    switch (payload) {
-      case payload.movieTitle: {
-        return this.apiParamPrefix.movieTitle + payload.movieTitle;
-      }
-      case payload.imdbId: {
-        return this.apiParamPrefix.imdbId + payload.imdbId;
-      }
-      case payload.page: {
-        return this.apiParamPrefix.page + payload.page;
-      }
-      default: {
-        return this.apiParamPrefix.imdbId + payload.imdbId;
-      }
-    }
-  }
+  // reqParam(payload: IOemdbReqFor) {
+  //   switch (payload) {
+  //     case payload.movieTitle: {
+  //       return this.apiParamPrefix.movieTitle + payload.movieTitle;
+  //     }
+  //     case payload.imdbId: {
+  //       return this.apiParamPrefix.imdbId + payload.imdbId;
+  //     }
+  //     case payload.page: {
+  //       return this.apiParamPrefix.page + payload.page;
+  //     }
+  //     default: {
+  //       return this.apiParamPrefix.imdbId + payload.imdbId;
+  //     }
+  //   }
+  // }
 }
 
 /**
@@ -79,7 +88,16 @@ export interface IOemdbReqFor {
   page?: number;
 }
 
-export interface IOemdbReqTypes {
+export interface IOemdbReqType {
   type: 'type';
   typeOf: 'movies' | 'series' | 'episodes';
+}
+
+export enum IOemdbReqTypes {
+  imdbId = 'imdbId',
+  movieTitle = 'movieTitle',
+  type = 'type',
+  releaseYear = 'releaseYear',
+  plot = 'plot',
+  page = 'page'
 }
