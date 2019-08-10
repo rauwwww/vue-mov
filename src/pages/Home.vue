@@ -1,14 +1,14 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+  <div>
+    <MoviesList />
     <h1>CLICK API</h1>
-    <button @click="moviesByTitle('test')">Get</button>
+    <button @click="moviesByTitle('test')">Api with param test</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import MoviesList from '@/components/movies/MoviesList.vue';
 import { ModuleNames } from '@/store/types';
 import { MoviesActionKeys } from '../store/movies/movies.actions';
 import { store } from '../store';
@@ -17,7 +17,7 @@ const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchMovies].join('
 
 @Component({
   components: {
-    HelloWorld
+    MoviesList
   }
 })
 export default class Home extends Vue {
