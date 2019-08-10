@@ -1,26 +1,23 @@
 import { ActionContext } from 'vuex';
 import MoviesState from '../movies.state';
 import RootState from '../../state';
-import { oemdbReq } from '@/common/oemdbApiHelper';
-import { IOemdbReq, IOemdbReqPrefix } from '../movies.types';
+import { oemdbGet } from '@/common/oemdbApiHelper';
+import { IOemdbApi, IOemdbReqFor } from '../movies.types';
 
-export default async function fetchMovies({  }: ActionContext<MoviesState, RootState>, title: string): Promise<any> {
-  // const tempDataArr: any[] = [];
-  const reqEx = new IOemdbReq();
-  const payload: IOemdbReqPrefix = {
-    movieTitle: title
+export default async function fetchMovies({  }: ActionContext<MoviesState, RootState>, title: IOemdbReqFor): Promise<any> {
+  const oemdbReq = new IOemdbApi();
+  const testTitle = 'Avatar';
+
+  const payload: IOemdbReqFor = {
+    movieTitle: testTitle,
+    page: 1
   };
-  // const apiQuery = '';
-  const apiQuery = reqEx.generateReqParams(payload);
-  console.log(reqEx.generateReqParams(payload));
-  // `t=${title}`;
-  try {
-    await oemdbReq(apiQuery).then((res) => {
-      // console.log(res);
-      // console.log(tempDataArr);
-    });
+  const generateApiReq = oemdbReq.generateReqParams(payload);
 
-    return 'loaded cases';
+  try {
+    await oemdbGet(generateApiReq);
+
+    return 'succesfully loaded';
   } catch {
     throw new Error(`error fetching movies`);
   }

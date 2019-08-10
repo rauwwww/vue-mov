@@ -6,7 +6,7 @@ export interface IMovies {
   title: string;
 }
 
-export class IOemdbReq {
+export class IOemdbApi {
   private apiParamPrefix: any = {
     imdbId: '&i=',
     movieTitle: '&t=',
@@ -17,16 +17,17 @@ export class IOemdbReq {
   };
 
   public generateReqParams(payload: any) {
-    const returnString: any = [];
-    // return this.apiReqTypes.keys((el: IOemdbReqPrefix) => el.movieTitle === payload);
-    console.log(payload, 'payload');
-
-    const result = Object.keys(payload).map((key) => {
-      const reutn = { searchFor: key, val: payload[key] };
-      return reutn;
+    const payloadToArr = Object.keys(payload).map((key) => {
+      const arrayValues = { searchFor: key, val: payload[key] };
+      return arrayValues;
     });
 
-    result.forEach((el) => {
+    return this.assignApiPrefix(payloadToArr);
+  }
+
+  private assignApiPrefix(arr: any) {
+    const returnString: any = [];
+    arr.forEach((el: any) => {
       if (el.searchFor === IOemdbReqTypes.movieTitle) {
         returnString.push(this.apiParamPrefix.movieTitle + el.val);
       }
@@ -43,30 +44,8 @@ export class IOemdbReq {
         returnString.push(this.apiParamPrefix.page + el.val);
       }
     });
-    console.log(result, 'mapped obj');
-    console.log(returnString.join(''));
+    return returnString.join('');
   }
-  // /**
-  //  *
-  //  * @param type movieTitle, imdbId, releaseYear, plot
-  //  * @param searchString
-  //  */
-  // reqParam(payload: IOemdbReqFor) {
-  //   switch (payload) {
-  //     case payload.movieTitle: {
-  //       return this.apiParamPrefix.movieTitle + payload.movieTitle;
-  //     }
-  //     case payload.imdbId: {
-  //       return this.apiParamPrefix.imdbId + payload.imdbId;
-  //     }
-  //     case payload.page: {
-  //       return this.apiParamPrefix.page + payload.page;
-  //     }
-  //     default: {
-  //       return this.apiParamPrefix.imdbId + payload.imdbId;
-  //     }
-  //   }
-  // }
 }
 
 /**
