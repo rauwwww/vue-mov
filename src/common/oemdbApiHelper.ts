@@ -46,6 +46,10 @@ export class IOemdbApi {
       if (el.searchFor === IOemdbReqTypes.page) {
         returnString.push(this.apiParamPrefix.page + el.val);
       }
+
+      if (el.searchFor === IOemdbReqTypes.type) {
+        returnString.push(this.apiParamPrefix.page + el.val);
+      }
     });
     return returnString.join('');
   }
@@ -63,16 +67,11 @@ export class IOemdbApi {
 export interface IOemdbReqFor {
   imdbId?: string;
   movieTitle?: string;
-  type?: IOemdbReqTypes;
+  type?: 'movies' | 'series' | 'episodes';
   releaseYear?: number;
   plot?: string;
   dataReturnType?: 'json' | 'xml';
   page?: number;
-}
-
-export interface IOemdbReqType {
-  type: 'type';
-  typeOf: 'movies' | 'series' | 'episodes';
 }
 
 export enum IOemdbReqTypes {

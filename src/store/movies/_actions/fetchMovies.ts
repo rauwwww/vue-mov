@@ -9,7 +9,8 @@ export default async function fetchMovies({  }: ActionContext<MoviesState, RootS
 
   const payload: IOemdbReqFor = {
     movieTitle: testTitle,
-    page: 1
+    page: 1,
+    type: 'episodes'
   };
 
   try {
