@@ -11,10 +11,9 @@ export default async function fetchMovies({  }: ActionContext<MoviesState, RootS
     movieTitle: testTitle,
     page: 1
   };
-  const generateApiReq = oemdbReq.generateReqParams(payload);
 
   try {
-    await oemdbReq.oemdbGet(generateApiReq);
+    await oemdbReq.oemdbGet(payload);
 
     return 'succesfully loaded';
   } catch {

@@ -11,9 +11,10 @@ export class IOemdbApi {
     page: '&page='
   };
 
-  public async oemdbGet(params?: any) {
-    console.log(oemdbBaseUrl + params);
-    const res = await axios.get(oemdbBaseUrl + params);
+  public async oemdbGet(payload: any) {
+    console.log(payload);
+    const apiString = await this.generateReqParams(payload);
+    const res = await axios.get(oemdbBaseUrl + apiString);
     console.log(res);
     return res;
   }
