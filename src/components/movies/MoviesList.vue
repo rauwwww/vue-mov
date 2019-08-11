@@ -1,21 +1,27 @@
 <template>
   <div>
     <h1 class="p-b-xl" vs-justify="center">Movies Comp</h1>
-    <vs-row type="flex" vs-justify="center" vs-align="center" vs-w="10">
+    <vs-row type="flex" vs-justify="center" vs-align="center" vs-w="12">
       <vs-col
         v-for="mov in this.movies"
-        class="m-r-xl"
         :key="mov.id"
         vs-type="flex"
         vs-align="center"
-        vs-w="3"
+        vs-w="4"
+        vs-sm="5"
+        vs-lg="2 m-r-xl"
       >
         <vs-card>
           <div slot="header">
-            <h3>Hello world !</h3>
+            <h3>{{ mov.Title }}</h3>
           </div>
           <div>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+            <span>{{ mov.Plot }}</span>
+          </div>
+          <div class="m-t-md">
+            <span>
+              <strong>{{ mov.ReleaseYear }}</strong>
+            </span>
           </div>
           <div slot="footer">
             <vs-row vs-justify="flex-end">
@@ -45,32 +51,22 @@ const TITLETEST = 'Avatar';
 export default class MoviesList extends Vue {
   private movies: any = [
     {
-      Title: 'something',
+      Title: 'Avatar',
       ReleaseYear: 1982,
       Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
     },
     {
-      Title: 'something2',
+      Title: 'Batman',
       ReleaseYear: 1982,
       Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
     },
     {
-      Title: 'something',
+      Title: 'Superman',
       ReleaseYear: 1982,
       Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
     },
     {
-      Title: 'something',
-      ReleaseYear: 1982,
-      Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
-    },
-    {
-      Title: 'something',
-      ReleaseYear: 1982,
-      Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
-    },
-    {
-      Title: 'something',
+      Title: 'Something',
       ReleaseYear: 1982,
       Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
     }
