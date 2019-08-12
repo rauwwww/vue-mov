@@ -1,5 +1,7 @@
 import axios from 'axios';
-const oemdbBaseUrl = 'http://www.omdbapi.com/?apikey=57472c69&';
+
+const apiKey = process.env.VUE_APP_OEMDB_APIKEY;
+const oemdbBaseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&`;
 
 export class IOemdbApi {
   private apiParamPrefix: any = {
@@ -14,6 +16,7 @@ export class IOemdbApi {
   public async oemdbGet(payload: any) {
     console.log(payload);
     const apiString = await this.generateReqParams(payload);
+    console.log(oemdbBaseUrl + apiString);
     const res = await axios.get(oemdbBaseUrl + apiString);
     console.log(res);
     return res;
