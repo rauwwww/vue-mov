@@ -70,10 +70,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import FILES from '../graphql/Files.gql';
-import UPLOAD_FILE from '../graphql/Files.gql';
+import FILES from '@/graphql/Files.gql';
+import UPLOAD_FILE from '@/graphql/Files.gql';
 
-@Component
+@Component({
+  name: 'ApolloExample'
+})
 export default class ApolloExample extends Vue {
   name: any = 'Anne';
   newMessage: any = '';

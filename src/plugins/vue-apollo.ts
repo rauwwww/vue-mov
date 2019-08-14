@@ -1,12 +1,19 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
 import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client';
+import { onError } from 'apollo-link-error';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
 
 // Install the vue plugin
 Vue.use(VueApollo);
 
 // Name of the localStorage item
 const AUTH_TOKEN = 'apollo-token';
+
+const httpLink = new HttpLink({
+  uri: process.env.VUE_APP_GRAPHQL_ENDPOINT
+});
 
 // Http endpoint
 const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:4000/graphql';
@@ -15,10 +22,31 @@ export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0
 
 Vue.prototype.$filesRoot = filesRoot;
 
+// Error Handling
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.map(({ message, locations, path }) =>
+      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+    );
+  }
+  if (networkError) {
+    console.log(`[Network error]: ${networkError}`);
+  }
+});
+
+// export type VueApolloClient = ApolloClient<InMemoryCache> & {
+//   wsClient: SubscriptionClient;
+// };
+
+// export interface VueApolloClients {
+//   [key: string]: VueApolloClient;
+// }
+
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
   httpEndpoint,
+
   // You can use `wss` for secure connection (recommended in production)
   // Use `null` to disable subscriptions
   wsEndpoint: process.env.VUE_APP_GRAPHQL_WS || 'ws://localhost:4000/graphql',
@@ -30,15 +58,15 @@ const defaultOptions = {
   // You need to pass a `wsEndpoint` for this to work
   websocketsOnly: false,
   // Is being rendered on the server?
-  ssr: false
+  ssr: false,
 
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
-  // link: myLink
+  link: errorLink.concat(httpLink),
 
   // Override default cache
-  // cache: myCache
+  cache: InMemoryCache
 
   // Override the way the Authorization header is set
   // getAuth: (tokenName) => ...
@@ -69,11 +97,7 @@ export function createProvider(options: any = {}) {
     },
     errorHandler(error: any) {
       // eslint-disable-next-line no-console
-      console.log(
-        '%cError',
-        'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;',
-        error.message
-      );
+      console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message);
     }
   });
 

@@ -42,7 +42,7 @@ import { ModuleNames } from '@/store/types';
 import { MoviesActionKeys } from '@/store/movies/movies.actions';
 import { store } from '@/store';
 
-const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchMovies].join('/');
+const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchOemdbMovies].join('/');
 const TITLETEST = 'Avatar';
 
 @Component({

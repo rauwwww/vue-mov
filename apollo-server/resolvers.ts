@@ -5,17 +5,17 @@ export default {
   JSON: GraphQLJSON,
 
   Counter: {
-    countStr: (counter) => `Current count: ${counter.count}`
+    countStr: (counter: any) => `Current count: ${counter.count}`
   },
 
   Query: {
     hello: (root, { name }) => `Hello ${name || 'World'}!`,
-    messages: (root, args, { db }) => db.get('messages').value(),
-    uploads: (root, args, { db }) => db.get('uploads').value()
+    messages: (root, { db }) => db.get('messages').value(),
+    uploads: (root, { db }) => db.get('uploads').value()
   },
 
   Mutation: {
-    myMutation: (root, args, context) => {
+    myMutation: (root, context) => {
       const message = 'My mutation completed!';
       context.pubsub.publish('hey', { mySub: message });
       return message;
@@ -63,7 +63,7 @@ export default {
     },
 
     messageAdded: {
-      subscribe: (parent, args, { pubsub }) => pubsub.asyncIterator('messages')
+      subscribe: (parent, { pubsub }) => pubsub.asyncIterator('messages')
     }
   }
 };
