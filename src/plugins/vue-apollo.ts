@@ -34,14 +34,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-// export type VueApolloClient = ApolloClient<InMemoryCache> & {
-//   wsClient: SubscriptionClient;
-// };
-
-// export interface VueApolloClients {
-//   [key: string]: VueApolloClient;
-// }
-
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
@@ -66,7 +58,9 @@ const defaultOptions = {
   link: errorLink.concat(httpLink),
 
   // Override default cache
-  cache: InMemoryCache
+  cache: InMemoryCache,
+
+  $loadingKey: 'Loading'
 
   // Override the way the Authorization header is set
   // getAuth: (tokenName) => ...

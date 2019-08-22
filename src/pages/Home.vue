@@ -17,18 +17,21 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import MoviesList from '@/components/movies/MoviesList.vue';
 import { ModuleNames } from '@/store/types';
 import { MoviesActionKeys } from '@/store/movies/movies.actions';
 import { store } from '@/store';
+
 import gql from 'graphql-tag';
+
+import MoviesList from '@/components/movies/MoviesList.vue';
 import ApolloExample from '@/components/ApolloExample.vue';
 
 const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchOemdbMovies].join('/');
 
 @Component({
   components: {
-    MoviesList
+    MoviesList,
+    ApolloExample
   }
 })
 export default class Home extends Vue {
