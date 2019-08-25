@@ -1,4 +1,4 @@
 {
   "defaultSeverity": "warning",
-  "extends": ["tslint:recommended", "@rauwww/tslint/tslint-config.json"]
+  "extends": ["tslint:recommended", "@rauwww/tslint/tslint-config"]
 }
