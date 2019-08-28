@@ -24,6 +24,7 @@ $ yarn serve
 
 ```sh
 $ docker-compose up
+$ http://localhost:8080/
 ```
 
 ### Lints and fixes files
