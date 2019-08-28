@@ -11,7 +11,7 @@ yarn
 
 Install the dependencies and devDependencies and start the server.
 
-### Run project
+### Run Frontend project
 
 Build, Compiles and hot-reloads for development:
 
@@ -20,23 +20,14 @@ $ yarn
 $ yarn serve
 ```
 
-### Run Apollo server
+### Run Graphql serv Docker image
 
 ```sh
-$ yarn apollo:start
+$ docker-compose up
 ```
 
 ### Lints and fixes files
 
 ```
 yarn lint
-```
-
-### Test
-
-Run end-to-end + unit tests
-
-```sh
-$ yarn test:e2e
-$ yarn test:unit
 ```
