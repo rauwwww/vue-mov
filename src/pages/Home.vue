@@ -10,8 +10,34 @@
       type="filled"
     >Api with param test</vs-button>
 
-    <vs-button @click="addTag('test')" color="dark" class="m-b-xl" type="filled">GraphQL Button</vs-button>
-    <ApolloExample />
+    <!-- <vs-button @click="addTag()" color="dark" class="m-b-xl" type="filled">GraphQL Button</vs-button> -->
+
+    <ApolloQuery
+      :query="gql => gql`
+      query users ($name: String!) {
+            id
+            name
+          }
+      `"
+    >
+      <!-- The result will automatically updated -->
+      <template v-slot="{ result: { loading, error, data } }">
+        <!-- Loading -->
+        <div v-if="loading" class="loading apollo">Loading...</div>
+
+        <!-- Error -->
+        <div v-else-if="error" class="error apollo">An error occurred</div>
+
+        <!-- Result -->
+        <div v-else-if="data" class="result apollo">{{ data }}</div>
+
+        <!-- No result -->
+        <div v-else class="no-result apollo">No result :(</div>
+      </template>
+    </ApolloQuery>
+  </div>
+</template>
+    </ApolloQuery>
   </div>
 </template>
 
@@ -24,14 +50,12 @@ import { store } from '@/store';
 import gql from 'graphql-tag';
 
 import MoviesList from '@/components/movies/MoviesList.vue';
-import ApolloExample from '@/components/ApolloExample.vue';
 
 const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchOemdbMovies].join('/');
 
 @Component({
   components: {
-    MoviesList,
-    ApolloExample
+    MoviesList
   }
 })
 export default class Home extends Vue {
@@ -50,21 +74,21 @@ export default class Home extends Vue {
 
   async addTag() {
     // Call to the graphql mutation
-    const result = await this.$apollo.mutate({
+    const result = await this.$apollo.query({
       // Query
 
-      mutation: gql`
-        mutation($label: String!) {
-          addTag(label: $label) {
+      query: gql`
+        query($label: String!) {
+          users(order_by: { id: asc }) {
             id
-            label
+            name
           }
         }
-      `,
-      // Parameters
-      variables: {
-        label: this.newTag
-      }
+      `
+      // // Parameters
+      // variables: {
+      //   label: this.newTag
+      // }
     });
   }
 }
