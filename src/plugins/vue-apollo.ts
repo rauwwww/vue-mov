@@ -16,11 +16,11 @@ const httpLink = new HttpLink({
 });
 
 // Http endpoint
-const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:4000/graphql';
+const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:8080/v1/graphql';
 // Files URL root
-export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0, httpEndpoint.indexOf('/graphql'));
+// export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0, httpEndpoint.indexOf('/graphql'));
 
-Vue.prototype.$filesRoot = filesRoot;
+// Vue.prototype.$filesRoot = filesRoot;
 
 // Error Handling
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -55,10 +55,10 @@ const defaultOptions = {
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
-  link: errorLink.concat(httpLink),
+  // link: errorLink.concat(httpLink),
 
   // Override default cache
-  cache: InMemoryCache,
+  cache: new InMemoryCache(),
 
   $loadingKey: 'Loading'
 
@@ -86,7 +86,8 @@ export function createProvider(options: any = {}) {
     defaultClient: apolloClient,
     defaultOptions: {
       $query: {
-        // fetchPolicy: 'cache-and-network',
+        fetchPolicy: 'cache-and-network',
+        errorPolicy: 'all'
       }
     },
     errorHandler(error: any) {
