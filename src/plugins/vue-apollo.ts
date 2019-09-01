@@ -60,6 +60,8 @@ const defaultOptions = {
   // Override default cache
   cache: new InMemoryCache(),
 
+  connectToDevTools: true,
+
   $loadingKey: 'Loading'
 
   // Override the way the Authorization header is set

@@ -12,7 +12,7 @@
 
     <!-- <vs-button @click="addTag()" color="dark" class="m-b-xl" type="filled">GraphQL Button</vs-button> -->
 
-    <ApolloQuery
+    <!-- <ApolloQuery
       :query="gql => gql`
       query users ($name: String!) {
             id
@@ -20,26 +20,25 @@
           }
       `"
     >
-      <!-- The result will automatically updated -->
-      <template v-slot="{ result: { loading, error, data } }">
-        <!-- Loading -->
-        <div v-if="loading" class="loading apollo">Loading...</div>
+    The result will automatically updated-->
+    <!-- <template v-slot="{ result: { loading, error, data } }">
+    Loading-->
+    <!-- <div v-if="loading" class="loading apollo">Loading...</div>
 
-        <!-- Error -->
-        <div v-else-if="error" class="error apollo">An error occurred</div>
+    Error-->
+    <!--  <div v-else-if="error" class="error apollo">An error occurred</div>
 
-        <!-- Result -->
-        <div v-else-if="data" class="result apollo">{{ data }}</div>
+    Result-->
+    <!-- <div v-else-if="data" class="result apollo">{{ data }}</div>
 
-        <!-- No result -->
-        <div v-else class="no-result apollo">No result :(</div>
+    No result-->
+    <!-- <div v-else class="no-result apollo">No result :(</div>
       </template>
-    </ApolloQuery>
+    </ApolloQuery>-->
+    <MoviesAdd />
   </div>
 </template>
-    </ApolloQuery>
-  </div>
-</template>
+
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
@@ -50,27 +49,20 @@ import { store } from '@/store';
 import gql from 'graphql-tag';
 
 import MoviesList from '@/components/movies/MoviesList.vue';
+import MoviesAdd from '@/components/movies/MoviesAdd.vue';
 
 const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchOemdbMovies].join('/');
 
 @Component({
   components: {
-    MoviesList
+    MoviesList,
+    MoviesAdd
   }
 })
 export default class Home extends Vue {
-  newTag: string = 'newTag';
-
   moviesByTitle(title: string) {
     store.dispatch(OEMDBAPIACTION, title);
   }
-
-  // apollo: {
-  //   // Simple query that will update the 'hello' vue property
-  //   hello: gql`query {
-  //     hello
-  //   }`,
-  // },
 
   async addTag() {
     // Call to the graphql mutation
@@ -85,10 +77,6 @@ export default class Home extends Vue {
           }
         }
       `
-      // // Parameters
-      // variables: {
-      //   label: this.newTag
-      // }
     });
   }
 }
