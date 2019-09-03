@@ -4,16 +4,14 @@ import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/gra
 import { onError } from 'apollo-link-error';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+// import { ApolloLink } from 'apollo-link';
+import { setContext } from 'apollo-link-context';
 
 // Install the vue plugin
 Vue.use(VueApollo);
 
 // Name of the localStorage item
 const AUTH_TOKEN = 'apollo-token';
-
-const httpLink = new HttpLink({
-  uri: process.env.VUE_APP_GRAPHQL_ENDPOINT
-});
 
 // Http endpoint
 const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:8080/v1/graphql';
@@ -32,6 +30,23 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) {
     console.log(`[Network error]: ${networkError}`);
   }
+});
+
+const header = setContext((_, { headers }) => {
+  headers = {
+    'x-hasura-admin-secret/x-hasura-access-key': 'myadminsecretkey'
+  };
+
+  return {
+    headers: {
+      ...headers,
+      authorization: `Bearer`
+    }
+  };
+});
+
+const httpLink = new HttpLink({
+  uri: 'http://localhost:8080/v1/graphql'
 });
 
 // Config
@@ -55,14 +70,14 @@ const defaultOptions = {
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
-  // link: errorLink.concat(httpLink),
+  link: httpLink,
 
   // Override default cache
   cache: new InMemoryCache(),
 
   connectToDevTools: true,
 
-  $loadingKey: 'Loading'
+  loadingKey: 'loading'
 
   // Override the way the Authorization header is set
   // getAuth: (tokenName) => ...
@@ -98,6 +113,7 @@ export function createProvider(options: any = {}) {
     }
   });
 
+  console.log(apolloProvider);
   return apolloProvider;
 }
 

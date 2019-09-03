@@ -18,8 +18,8 @@ import gql from 'graphql-tag';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const ADD_MOVIE = gql`
-  mutation addMovie($title: String!, $director: String!, $composer: String!, $release_date: date!) {
-    insert_movies(objects: [{ title: $title, director: $director, composer: $composer, release_date: $release_date }]) {
+  mutation addMovie($title: String!, $director: String!, $composer: String!) {
+    insert_movies(objects: [{ title: $title, director: $director, composer: $composer }]) {
       returning {
         id
       }
@@ -31,18 +31,31 @@ export default class MoviesAdd extends Vue {
   @Getter frontPageText!: string;
 
   title: string = '';
+  director: string = '';
+  composer: string = '';
+  releaseDate: string = '';
 
   created() {
     store.dispatch(GlobalActionKeys.fetchRootData);
   }
 
   submit() {
-    const title = this.title;
+    const { title, director, composer, releaseDate } = this;
+
     this.$apollo.mutate({
       mutation: ADD_MOVIE,
       variables: {
-        title
+        title,
+        director,
+        composer
       },
+      // options: {
+      //   context: {
+      //     headers: {
+      //       "x-custom-header: "pancakes"  // this header will reach the server
+      //     }
+      //   },
+      // },
       refetchQueries: ['getMovies']
     });
     this.title = '';
