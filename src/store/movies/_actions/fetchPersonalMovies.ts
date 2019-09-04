@@ -1,17 +1,23 @@
 import { ActionContext } from 'vuex';
 import MoviesState from '../movies.state';
 import RootState from '../../state';
-// import gql from 'graphql-tag';
-import getMoviesQuery from '@/graphql/messages.gql';
+import gql from 'graphql-tag';
+import usersQuery from '@/graphql/Users.gql';
 
-export default async function fetchMyMovies({  }: ActionContext<MoviesState, RootState>): Promise<any> {
-  const query = globalThis.$apollo.query({ query: getMoviesQuery });
-  try {
-    console.log(getMoviesQuery);
-    console.log(query);
-
-    return 'succesfully loaded';
-  } catch {
-    throw new Error(`error fetching movies`);
+const todoQuery = gql`
+  {
+    users(order_by: [{ id: desc }]) {
+      id
+      name
+    }
   }
+`;
+
+export default async function fetchMyMovies({  }: ActionContext<MoviesState, RootState>) {
+  const query1 = await this.$apollo.query({ query: todoQuery });
+  console.log(query1);
+  console.log(query1);
+  console.log(query1);
+
+  return 'succesfully loaded';
 }

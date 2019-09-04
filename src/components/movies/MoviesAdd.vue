@@ -2,9 +2,10 @@
   <div class="hello">
     <h1>{{ frontPageText }} - MoviesAdd</h1>
     <form @submit.prevent="submit">
-      <input type="text" placeholder="Title" v-model="title" />
+      <!-- <input type="text" placeholder="Title" v-model="title" /> -->
       <button type="submit">Submit</button>
     </form>
+    <p v-for="user in users" :key="user.id">{{ user }}</p>
   </div>
 </template>
 
@@ -16,21 +17,16 @@ import { store } from '../../store';
 
 import gql from 'graphql-tag';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ModuleNames } from '../../store/types';
+import { MoviesActionKeys } from '../../store/movies/movies.actions';
 
-const ADD_MOVIE = gql`
-  mutation addMovie($title: String!, $director: String!, $composer: String!) {
-    insert_movies(objects: [{ title: $title, director: $director, composer: $composer }]) {
-      returning {
-        id
-      }
-    }
-  }
-`;
+const FETCH_MOVIES = [ModuleNames.movies, MoviesActionKeys.fetchPersonalMovies].join('/');
+
 @Component
 export default class MoviesAdd extends Vue {
   @Getter frontPageText!: string;
 
-  title: string = '';
+  users: any = [];
   director: string = '';
   composer: string = '';
   releaseDate: string = '';
@@ -39,26 +35,35 @@ export default class MoviesAdd extends Vue {
     store.dispatch(GlobalActionKeys.fetchRootData);
   }
 
-  submit() {
-    const { title, director, composer, releaseDate } = this;
+  async submit() {
+    const { users, director, composer, releaseDate } = this;
 
-    this.$apollo.mutate({
-      mutation: ADD_MOVIE,
-      variables: {
-        title,
-        director,
-        composer
-      },
-      // options: {
-      //   context: {
-      //     headers: {
-      //       "x-custom-header: "pancakes"  // this header will reach the server
-      //     }
-      //   },
-      // },
-      refetchQueries: ['getMovies']
-    });
-    this.title = '';
+    const todoQuery = gql`
+      {
+        users(order_by: [{ id: desc }]) {
+          id
+          name
+        }
+      }
+    `;
+
+    const query1 = await this.$apollo.query({ query: todoQuery });
+
+    // this.$apollo.query({
+    //   query: ADD_MOVIE
+
+    //   // options: {
+    //   //   context: {
+    //   //     headers: {
+    //   //       "x-custom-header: "pancakes"  // this header will reach the server
+    //   //     }
+    //   //   },
+    //   // },
+    // });
+    // store.dispatch(FETCH_MOVIES).then((res) => {
+    //   console.log(res, 'res');
+    // });
+    console.log(query1);
     return 'success';
   }
 }

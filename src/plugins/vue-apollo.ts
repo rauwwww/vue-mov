@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
+
 import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client';
 import { onError } from 'apollo-link-error';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -126,7 +127,7 @@ export async function onLogin(apolloClient: { wsClient: any; resetStore: () => v
     restartWebsockets(apolloClient.wsClient);
   }
   try {
-    await apolloClient.resetStore();
+    apolloClient.resetStore();
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('%cError on cache reset (login)', 'color: orange;', e.message);
@@ -142,7 +143,7 @@ export async function onLogout(apolloClient: { wsClient: any; resetStore: () => 
     restartWebsockets(apolloClient.wsClient);
   }
   try {
-    await apolloClient.resetStore();
+    apolloClient.resetStore();
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('%cError on cache reset (logout)', 'color: orange;', e.message);
