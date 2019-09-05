@@ -20,6 +20,7 @@
     "@types/lowdb": "^1.0.9",
     "@types/mkdirp": "^0.5.2",
     "@types/shortid": "^0.0.29",
+    "apollo-boost": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-client": "^2.6.3",
     "apollo-link": "^1.2.12",

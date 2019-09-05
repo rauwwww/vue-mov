@@ -19,6 +19,7 @@ import gql from 'graphql-tag';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ModuleNames } from '../../store/types';
 import { MoviesActionKeys } from '../../store/movies/movies.actions';
+import usersQuery from '@/graphql/Users.gql';
 
 const FETCH_MOVIES = [ModuleNames.movies, MoviesActionKeys.fetchPersonalMovies].join('/');
 
@@ -36,35 +37,11 @@ export default class MoviesAdd extends Vue {
   }
 
   async submit() {
-    const { users, director, composer, releaseDate } = this;
+    const { users } = this;
 
-    const todoQuery = gql`
-      {
-        users(order_by: [{ id: desc }]) {
-          id
-          name
-        }
-      }
-    `;
-
-    const query1 = await this.$apollo.query({ query: todoQuery });
-
-    // this.$apollo.query({
-    //   query: ADD_MOVIE
-
-    //   // options: {
-    //   //   context: {
-    //   //     headers: {
-    //   //       "x-custom-header: "pancakes"  // this header will reach the server
-    //   //     }
-    //   //   },
-    //   // },
-    // });
-    // store.dispatch(FETCH_MOVIES).then((res) => {
-    //   console.log(res, 'res');
-    // });
-    console.log(query1);
-    return 'success';
+    store.dispatch(FETCH_MOVIES).then((resp) => {
+      console.log(resp);
+    });
   }
 }
 </script>
