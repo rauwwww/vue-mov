@@ -23,6 +23,7 @@ export class IOemdbApi {
   }
 
   public generateReqParams(payload: any) {
+    // Entries replace keys with Entries
     const payloadToArr = Object.keys(payload).map((key) => {
       const arrayValues = { searchFor: key, val: payload[key] };
       return arrayValues;

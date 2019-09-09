@@ -21,16 +21,12 @@ import { ModuleNames } from '@/store/types';
 import { MoviesActionKeys } from '@/store/movies/movies.actions';
 import { store } from '@/store';
 
-import gql from 'graphql-tag';
-
-import MoviesList from '@/components/movies/MoviesList.vue';
 import MoviesAdd from '@/components/movies/MoviesAdd.vue';
 
 const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchOemdbMovies].join('/');
 
 @Component({
   components: {
-    MoviesList,
     MoviesAdd
   }
 })

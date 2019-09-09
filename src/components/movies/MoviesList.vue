@@ -49,7 +49,7 @@ const TITLETEST = 'Avatar';
   name: 'MoviesList'
 })
 export default class MoviesList extends Vue {
-  private movies: any = [
+  movies: any = [
     {
       Title: 'Avatar',
       ReleaseYear: 1982,

@@ -15,11 +15,8 @@ import { Getter } from 'vuex-class';
 import { GlobalActionKeys } from '../../store/actions';
 import { store } from '../../store';
 
-import gql from 'graphql-tag';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ModuleNames } from '../../store/types';
 import { MoviesActionKeys } from '../../store/movies/movies.actions';
-import usersQuery from '@/graphql/Users.gql';
 
 const FETCH_MOVIES = [ModuleNames.movies, MoviesActionKeys.fetchPersonalMovies].join('/');
 
@@ -37,8 +34,6 @@ export default class MoviesAdd extends Vue {
   }
 
   async submit() {
-    const { users } = this;
-
     store.dispatch(FETCH_MOVIES).then((resp) => {
       console.log(resp);
     });
