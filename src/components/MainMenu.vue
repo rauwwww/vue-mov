@@ -4,13 +4,17 @@
       <div slot="title">
         <vs-navbar-title>Hello world</vs-navbar-title>
 
-        <SideMenu class="p-t-sm" />
+        <!-- <SideMenu class="p-t-sm" /> -->
       </div>
       <vs-navbar-item index="0">
-        <a href="#">Home</a>
+        <router-link to="/home" v-slot="{ href, route, navigate, isActive }">
+          <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
+        </router-link>
       </vs-navbar-item>
       <vs-navbar-item index="1">
-        <a href="#">News</a>
+        <router-link to="/movies" v-slot="{ href, route, navigate, isActive }">
+          <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
+        </router-link>
       </vs-navbar-item>
 
       <vs-input icon="search" placeholder="search" v-model="search" />
