@@ -19,6 +19,7 @@ Vue.config.productionTip = false;
 
 // tslint:disable-next-line: no-unused-expression
 new Vue({
+  apolloProvider: createProvider(),
   el: '#app',
   router,
   store,
@@ -26,6 +27,5 @@ new Vue({
   components: {
     App
   },
-  apolloProvider: createProvider(),
   render: (h: any) => h(App)
 });

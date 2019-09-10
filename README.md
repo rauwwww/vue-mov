@@ -32,3 +32,9 @@ $ http://localhost:8080/
 ```
 yarn lint
 ```
+
+### documentation
+
+Hasura: https://docs.hasura.io/
+Vue apollo: https://vue-apollo.netlify.com/
+Vuex: https://vuex.vuejs.org/

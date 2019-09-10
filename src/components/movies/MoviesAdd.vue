@@ -1,0 +1,60 @@
+<template>
+  <div class="hello">
+    <h1>{{ frontPageText }} - MoviesAdd</h1>
+    <form @submit.prevent="submit">
+      <!-- <input type="text" placeholder="Title" v-model="title" /> -->
+      <button type="submit">Submit</button>
+    </form>
+    <p v-for="user in users" :key="user.id">{{ user }}</p>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
+import { GlobalActionKeys } from '../../store/actions';
+import { store } from '../../store';
+
+import { ModuleNames } from '../../store/types';
+import { MoviesActionKeys } from '../../store/movies/movies.actions';
+
+const FETCH_MOVIES = [ModuleNames.movies, MoviesActionKeys.fetchPersonalMovies].join('/');
+
+@Component
+export default class MoviesAdd extends Vue {
+  @Getter frontPageText!: string;
+
+  users: any = [];
+  director: string = '';
+  composer: string = '';
+  releaseDate: string = '';
+
+  created() {
+    store.dispatch(GlobalActionKeys.fetchRootData);
+  }
+
+  async submit() {
+    store.dispatch(FETCH_MOVIES).then((resp) => {
+      console.log(resp);
+    });
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>

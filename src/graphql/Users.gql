@@ -1,4 +1,5 @@
-query users(order_by: {id: asc}) {
-    id
-    name
+query users {
+  users {
+    ...User
   }
+}
