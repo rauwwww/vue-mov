@@ -1,17 +1,17 @@
 import { ActionTree } from 'vuex';
 import fetchOemdbMovies from './_actions/fetchOemdbMovies';
-import fetchPersonalMovies from './_actions/fetchPersonalMovies';
+import fetchUserMovies from './_actions/fetchUserMovies';
 import MoviesState from './movies.state';
 import RootState from '../state';
 
 export enum MoviesActionKeys {
   fetchOemdbMovies = 'fetchOemdbMovies',
-  fetchPersonalMovies = 'fetchPersonalMovies'
+  fetchUserMovies = 'fetchUserMovies'
 }
 
 export const actions: ActionTree<MoviesState, RootState> = {
   fetchOemdbMovies,
-  fetchPersonalMovies
+  fetchUserMovies
 };
 
 export default actions;

@@ -5,20 +5,24 @@ import gql from 'graphql-tag';
 import { apolloClient } from '@/plugins/vue-apollo';
 import { MoviesMutationKeys } from '../movies.mutations';
 
-const userQuery = gql`
+const moviesQuery = gql`
   {
-    users(order_by: [{ id: desc }]) {
+    movies(where: { user_id: { _eq: 1 } }) {
+      updatedAt
+      title
+      releaseDate
       id
-      name
+      director
+      createdAt
     }
   }
 `;
 // const query = usersQuery({ query: userQuery });
 export default async function fetchMyMovies({ commit }: ActionContext<MoviesState, RootState>) {
-  const query = await apolloClient.query({ query: userQuery });
+  const query = await apolloClient.query({ query: moviesQuery });
   console.log(query.data);
-  console.log(query);
+  // console.log(query);
 
-  commit(MoviesMutationKeys.setMovies, query);
+  commit(MoviesMutationKeys.setMovies, query.data);
   return 'succesfully loaded';
 }

@@ -1,79 +1,48 @@
 <template>
-  <div>
-    <h1 class="p-b-xl" vs-justify="center">Movies Comp</h1>
-    <vs-row type="flex" vs-justify="center" vs-align="center" vs-w="12">
-      <vs-col
-        v-for="mov in this.movies"
-        :key="mov.id"
-        vs-type="flex"
-        vs-align="center"
-        vs-w="4"
-        vs-sm="5"
-        vs-lg="2 m-r-xl"
-      >
-        <vs-card>
-          <div slot="header">
-            <h3>{{ mov.Title }}</h3>
-          </div>
-          <div>
-            <span>{{ mov.Plot }}</span>
-          </div>
-          <div class="m-t-md">
-            <span>
-              <strong>{{ mov.ReleaseYear }}</strong>
-            </span>
-          </div>
-          <div slot="footer">
-            <vs-row vs-justify="flex-end">
-              <vs-button type="gradient" color="danger" icon="favorite"></vs-button>
-              <vs-button color="primary" icon="turned_in_not"></vs-button>
-              <vs-button color="rgb(230,230,230)" color-text="rgb(50,50,50)" icon="settings"></vs-button>
-            </vs-row>
-          </div>
-        </vs-card>
-      </vs-col>
-    </vs-row>
+  <div class="hello">
+    <h1 class="m-t-lg">MoviesList</h1>
+
+    <p class="m-t-lg" v-for="mov in movies" :key="mov.id">{{ mov }}</p>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { ModuleNames } from '@/store/types';
-import { MoviesActionKeys } from '@/store/movies/movies.actions';
-import { store } from '@/store';
+import { Getter, namespace } from 'vuex-class';
+import { GlobalActionKeys } from '../../store/actions';
+import { store } from '../../store';
 
-const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchOemdbMovies].join('/');
-const TITLETEST = 'Avatar';
+import { ModuleNames } from '../../store/types';
+import { MoviesActionKeys } from '../../store/movies/movies.actions';
+import { MoviesGetterKeys } from '../../store/movies/movies.getters';
+import { IMovies } from '../../store/movies/movies.types';
+
+const MOVIES_NAMESPACE = namespace(ModuleNames.movies);
+const FETCH_MOVIES = [ModuleNames.movies, MoviesActionKeys.fetchUserMovies].join('/');
 
 @Component({
   name: 'MoviesList'
 })
 export default class MoviesList extends Vue {
-  movies: any = [
-    {
-      Title: 'Avatar',
-      ReleaseYear: 1982,
-      Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
-    },
-    {
-      Title: 'Batman',
-      ReleaseYear: 1982,
-      Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
-    },
-    {
-      Title: 'Superman',
-      ReleaseYear: 1982,
-      Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
-    },
-    {
-      Title: 'Something',
-      ReleaseYear: 1982,
-      Plot: 'A young man must complete his work at a Navy Officer Candidate School to become an aviator, with the help '
-    }
-  ];
+  @Getter frontPageText!: string;
+  @MOVIES_NAMESPACE.Getter(MoviesGetterKeys.moviesAll) movies!: IMovies;
 
-  beforeCreated() {
-    store.dispatch(OEMDBAPIACTION, TITLETEST);
+  users: any = [];
+  director: string = '';
+  composer: string = '';
+  releaseDate: string = '';
+
+  created() {
+    store.dispatch(GlobalActionKeys.fetchRootData);
+    store.dispatch(FETCH_MOVIES);
+  }
+
+  beforeRouteEnter(to: any, from: any, next: any) {
+    console.log('fetched');
+    store.dispatch(FETCH_MOVIES).then(() => {
+      next();
+    });
   }
 }
 </script>
+

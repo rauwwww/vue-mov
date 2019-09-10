@@ -1,6 +1,5 @@
 <template>
   <div>
-    <MoviesList />
     <h1 class="m-t-lg">CLICK API</h1>
 
     <vs-button
@@ -10,7 +9,7 @@
       type="filled"
     >Api with param test</vs-button>
 
-    <MoviesAdd />
+    <MoviesList />
   </div>
 </template>
 
@@ -21,13 +20,13 @@ import { ModuleNames } from '@/store/types';
 import { MoviesActionKeys } from '@/store/movies/movies.actions';
 import { store } from '@/store';
 
-import MoviesAdd from '@/components/movies/MoviesAdd.vue';
+import MoviesList from '@/components/movies/MoviesList.vue';
 
 const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchOemdbMovies].join('/');
 
 @Component({
   components: {
-    MoviesAdd
+    MoviesList
   }
 })
 export default class Home extends Vue {
