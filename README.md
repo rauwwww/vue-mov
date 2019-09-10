@@ -7,6 +7,7 @@
 ### requisites
 
 Node v10.16+
+
 yarn
 
 Install the dependencies and devDependencies and start the server.
@@ -36,5 +37,7 @@ yarn lint
 ### documentation
 
 Hasura: https://docs.hasura.io/
+
 Vue apollo: https://vue-apollo.netlify.com/
+
 Vuex: https://vuex.vuejs.org/
