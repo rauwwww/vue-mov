@@ -30,7 +30,9 @@ $ http://localhost:8080/
 
 ### auth0
 
+```
 rename authConfig.ts.example to authConfig.ts and fill in your on creds
+```
 
 ### Lints and fixes files
 
