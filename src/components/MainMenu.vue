@@ -16,13 +16,12 @@
           <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
         </router-link>
       </vs-navbar-item>
-      <vs-navbar-item class="p-l-lg" index="1">
+      <vs-navbar-item class="p-l-lg p-r-lg" index="2">
         <!-- <router-link to="/login" v-slot="{ href, route, navigate, isActive }">
           <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
         </router-link>-->
-        <li class="nav-item">
-          <button id="qsLoginBtn" class="btn btn-primary btn-margin" @click.prevent="login">Login</button>
-        </li>
+
+        <login />
       </vs-navbar-item>
 
       <vs-input icon="search" placeholder="search" v-model="search" />
@@ -45,26 +44,16 @@
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import SideMenu from './SideMenu.vue';
-import { AuthActionKeys } from '../store/auth/auth.actions';
-import { ModuleNames } from '../store/types';
-import { store } from '../store';
-
-const AUTHLOGIN = [ModuleNames.auth, AuthActionKeys.authLogin].join('/');
+import Login from './modals/Login.vue';
 
 @Component({
   name: 'MainMenu',
   components: {
-    SideMenu
+    SideMenu,
+    Login
   }
 })
 export default class MainMenu extends Vue {
   @Provide() search: string = '';
-
-  login() {
-    console.log(AUTHLOGIN);
-    store.dispatch(AUTHLOGIN).then((res) => {
-      console.log('success', res);
-    });
-  }
 }
 </script>
