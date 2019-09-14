@@ -7,5 +7,5 @@ export enum GlobalGetterKeys {
 }
 
 export const getters: GetterTree<RootState, IRootState> = {
-  frontPageText: (state) => state.frontPageText
+  frontPageText: (state: IRootState) => state.frontPageText
 };

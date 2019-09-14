@@ -1,28 +1,36 @@
-# vue-mov
+# vue-mov Appollo
 
-## Project setup
+    Todo - Add description
 
-```
-yarn install
+## Setup
+
+### requisites
+
+Node v10.16+
+
+yarn
+
+Install the dependencies and devDependencies and start the server.
+
+### Run Frontend project
+
+Build, Compiles and hot-reloads for development:
+
+```sh
+$ yarn
+$ yarn serve
 ```
 
-### Compiles and hot-reloads for development
+### Run Graphql serv Docker image
 
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
+```sh
+$ docker-compose up
+$ http://localhost:8080/
 ```
 
-### Run your tests
+### auth0
 
-```
-yarn test
-```
+rename authConfig.ts.example to authConfig.ts and fill in your on creds
 
 ### Lints and fixes files
 
@@ -30,24 +38,14 @@ yarn test
 yarn lint
 ```
 
-### Run your end-to-end tests
+### documentation
 
-```
-yarn test:e2e
-```
+Hasura: https://docs.hasura.io/
 
-### Run your unit tests
+Vue apollo: https://vue-apollo.netlify.com/
 
-```
-yarn test:unit
-```
+Vuex: https://vuex.vuejs.org/
 
-### Customize configuration
+Auth0: https://auth0.com/docs/quickstart/spa/vuejs
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-### Apollo uses vue apollo CLI to spin up the graphQl api
-
-```
-    apollo:start
-```
+vuesax: https://lusaxweb.github.io/vuesax/development/

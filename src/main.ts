@@ -3,16 +3,31 @@ import App from './App.vue';
 import router from './router';
 import { store } from './store/index';
 
-// config
-import './config/vue-apollo';
-import './registerServiceWorker';
-import { createProvider } from './config/vue-apollo';
+// custom styles
+import '@/assets/styles/spacing.scss';
+import '@/assets/styles/material-icons.scss';
+import '@/assets/styles/main.scss';
 
+// plugins
+import './plugins/vue-apollo';
+import './plugins/vuesax';
+import AuthPlugin from './plugins/auth0';
+
+import './registerServiceWorker';
+import { createProvider } from './plugins/vue-apollo';
+
+Vue.use(AuthPlugin);
 Vue.config.productionTip = false;
 
+// tslint:disable-next-line: no-unused-expression
 new Vue({
+  apolloProvider: createProvider(),
+  el: '#app',
   router,
   store,
-  apolloProvider: createProvider(),
-  render: (h) => h(App)
-}).$mount('#app');
+  template: '<App/>',
+  components: {
+    App
+  },
+  render: (h: any) => h(App)
+});

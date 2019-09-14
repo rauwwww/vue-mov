@@ -4,6 +4,7 @@ node_modules
 
 /tests/e2e/reports/
 selenium-debug.log
+authConfig.ts
 
 # local env files
 .env.local
