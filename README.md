@@ -28,6 +28,10 @@ $ docker-compose up
 $ http://localhost:8080/
 ```
 
+### auth0
+
+rename authConfig.ts.example to authConfig.ts and fill in your on creds
+
 ### Lints and fixes files
 
 ```
@@ -41,3 +45,5 @@ Hasura: https://docs.hasura.io/
 Vue apollo: https://vue-apollo.netlify.com/
 
 Vuex: https://vuex.vuejs.org/
+
+Auth0: https://auth0.com/docs/quickstart/spa/vuejs
