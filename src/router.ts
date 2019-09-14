@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import Callback from './views/Callback.vue';
 
 Vue.use(Router);
 
@@ -10,7 +11,7 @@ export default new Router({
   routes: [
     {
       path: '/home',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
@@ -23,8 +24,13 @@ export default new Router({
     },
     {
       path: '/movies',
-      name: 'Movies',
+      name: 'movies',
       component: () => import(/* webpackChunkName: "about" */ './views/Movies.vue')
+    },
+    {
+      path: '/callback',
+      name: 'callback',
+      component: Callback
     }
   ]
 });

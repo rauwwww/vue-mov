@@ -11,10 +11,12 @@ import '@/assets/styles/main.scss';
 // plugins
 import './plugins/vue-apollo';
 import './plugins/vuesax';
+import AuthPlugin from './plugins/auth0';
 
 import './registerServiceWorker';
 import { createProvider } from './plugins/vue-apollo';
 
+Vue.use(AuthPlugin);
 Vue.config.productionTip = false;
 
 // tslint:disable-next-line: no-unused-expression

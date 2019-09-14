@@ -79,7 +79,6 @@ export function createProvider(options: any = {}) {
     }
   });
 
-  console.log(apolloProvider, 'provider');
   return apolloProvider;
 }
 

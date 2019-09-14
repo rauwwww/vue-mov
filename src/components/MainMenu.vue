@@ -16,6 +16,13 @@
           <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
         </router-link>
       </vs-navbar-item>
+      <vs-navbar-item class="p-l-lg p-r-lg" index="2">
+        <!-- <router-link to="/login" v-slot="{ href, route, navigate, isActive }">
+          <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
+        </router-link>-->
+
+        <login />
+      </vs-navbar-item>
 
       <vs-input icon="search" placeholder="search" v-model="search" />
     </vs-navbar>
@@ -37,11 +44,13 @@
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import SideMenu from './SideMenu.vue';
+import Login from './modals/Login.vue';
 
 @Component({
   name: 'MainMenu',
   components: {
-    SideMenu
+    SideMenu,
+    Login
   }
 })
 export default class MainMenu extends Vue {
