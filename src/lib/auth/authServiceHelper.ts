@@ -1,15 +1,15 @@
-import { store } from '../store/index';
-import { LocalStorageKeys } from '../store/auth/auth.types';
-import authConfig from '../../auth-conf.json';
+import { store } from '../../store/index';
+import { LocalStorageKeys } from '../../store/auth/auth.types';
+import { AUTH_CONFIG } from '@/lib/auth/authConfig';
 import auth0 from 'auth0-js';
 import { AuthMutationKeys } from '@/store/auth/auth.mutations';
 
 const authState = store.state.auth;
 
 const webAuth = new auth0.WebAuth({
-  domain: authConfig.domain,
+  domain: AUTH_CONFIG.domain,
   redirectUri: `${window.location.origin}/callback`,
-  clientID: authConfig.clientId,
+  clientID: AUTH_CONFIG.clientId,
   responseType: 'id_token',
   scope: 'openid profile email'
 });

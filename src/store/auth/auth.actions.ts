@@ -14,7 +14,7 @@ import auth0 from 'auth0-js';
 
 export enum AuthActionKeys {
   authLogin = 'authLogin',
-  logOut = 'logOut',
+  logOut = 'authLogOut',
   handleAuthentication = 'handleAuthentication'
 }
 
@@ -44,7 +44,7 @@ export const actions: ActionTree<AuthState, RootState> = {
       return err;
     }
   },
-  async logOut({ commit }: ActionContext<AuthState, RootState>) {
+  async authLogOut({ commit }: ActionContext<AuthState, RootState>) {
     // localStorage.removeItem(localStorageKey);
     try {
       webAuth.logout({

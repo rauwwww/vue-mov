@@ -1,4 +1,4 @@
-import authService from '../lib/authServiceHelper';
+import authService from '../lib/auth/authServiceHelper';
 import Vue from 'vue';
 
 export default {
