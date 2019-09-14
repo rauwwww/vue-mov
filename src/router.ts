@@ -11,7 +11,7 @@ export default new Router({
   routes: [
     {
       path: '/home',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
@@ -24,7 +24,7 @@ export default new Router({
     },
     {
       path: '/movies',
-      name: 'Movies',
+      name: 'movies',
       component: () => import(/* webpackChunkName: "about" */ './views/Movies.vue')
     },
     {
