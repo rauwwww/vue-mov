@@ -71,22 +71,5 @@ export const actions: ActionTree<AuthState, RootState> = {
       });
     });
   }
-
-  // function localLogin(authResult: any) {
-  //   this.idToken = authResult.idToken;
-  //   this.profile = authResult.idTokenPayload;
-
-  //   // Convert the expiry time from seconds to milliseconds,
-  //   // required by the Date constructor
-  //   this.tokenExpiry = new Date(this.profile.exp * 1000);
-
-  //   localStorage.setItem(localStorageKey, 'true');
-
-  //   this.emit(loginEvent, {
-  //     loggedIn: true,
-  //     profile: authResult.idTokenPayload,
-  //     state: authResult.appState || {}
-  //   });
-  // }
 };
 export default actions;

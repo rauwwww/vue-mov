@@ -20,7 +20,7 @@
         <!-- <router-link to="/login" v-slot="{ href, route, navigate, isActive }">
           <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
         </router-link>-->
-        <li v-if="!isAuthenticated" class="nav-item">
+        <li class="nav-item">
           <button id="qsLoginBtn" class="btn btn-primary btn-margin" @click.prevent="login">Login</button>
         </li>
       </vs-navbar-item>
@@ -61,6 +61,7 @@ export default class MainMenu extends Vue {
   @Provide() search: string = '';
 
   login() {
+    console.log(AUTHLOGIN);
     store.dispatch(AUTHLOGIN).then((res) => {
       console.log('success', res);
     });
