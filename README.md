@@ -47,3 +47,5 @@ Vue apollo: https://vue-apollo.netlify.com/
 Vuex: https://vuex.vuejs.org/
 
 Auth0: https://auth0.com/docs/quickstart/spa/vuejs
+
+vuesax: https://lusaxweb.github.io/vuesax/development/
