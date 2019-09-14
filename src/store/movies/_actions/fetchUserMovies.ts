@@ -20,8 +20,6 @@ const moviesQuery = gql`
 // const query = usersQuery({ query: userQuery });
 export default async function fetchMyMovies({ commit }: ActionContext<MoviesState, RootState>) {
   const query = await apolloClient.query({ query: moviesQuery });
-  console.log(query.data);
-  // console.log(query);
 
   commit(MoviesMutationKeys.setMovies, query.data);
   return 'succesfully loaded';
