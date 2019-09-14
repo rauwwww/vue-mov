@@ -48,7 +48,7 @@ export const actions: ActionTree<AuthState, RootState> = {
     // localStorage.removeItem(localStorageKey);
     try {
       webAuth.logout({
-        returnTo: `${window.location.origin}`
+        returnTo: `${window.location.origin}/home`
       });
       commit(AuthMutationKeys.logout);
     } catch (err) {
