@@ -7,13 +7,10 @@ import { MoviesMutationKeys } from '../movies.mutations';
 
 const moviesQuery = gql`
   {
-    movies(where: { user_id: { _eq: 1 } }) {
-      updatedAt
+    movies {
       title
-      releaseDate
       id
       director
-      createdAt
     }
   }
 `;

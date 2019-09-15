@@ -3,8 +3,6 @@
     <vs-navbar class="nabarx p-md">
       <div slot="title">
         <vs-navbar-title>Hello world</vs-navbar-title>
-
-        <!-- <SideMenu class="p-t-sm" /> -->
       </div>
       <vs-navbar-item index="0">
         <router-link to="/home" v-slot="{ href, route, navigate, isActive }">
@@ -17,10 +15,6 @@
         </router-link>
       </vs-navbar-item>
       <vs-navbar-item class="p-l-lg p-r-lg" index="2">
-        <!-- <router-link to="/login" v-slot="{ href, route, navigate, isActive }">
-          <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
-        </router-link>-->
-
         <login />
       </vs-navbar-item>
 

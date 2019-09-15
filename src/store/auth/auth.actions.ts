@@ -60,7 +60,7 @@ export const actions: ActionTree<AuthState, RootState> = {
     return new Promise((resolve, reject) => {
       webAuth.parseHash((err, authResult) => {
         if (err) {
-          commit(AuthMutationKeys.loginErr);
+          commit(AuthMutationKeys.loginErr, err);
           reject(err);
         } else if (authResult) {
           commit(AuthMutationKeys.localLogin, authResult);

@@ -27,7 +27,7 @@ const mutations: MutationTree<IAuthState> = {
   },
   loginErr(state: IAuthState, resp: IAuth0Responses) {
     state.isLoggedIn = false;
-    state.errorMsg = resp.err.statusText;
+    state.errorMsg = resp.error;
   },
   logout(state: IAuthState) {
     state.idToken = '';

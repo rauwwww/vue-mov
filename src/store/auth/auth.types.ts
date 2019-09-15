@@ -14,7 +14,9 @@ export interface IProfile {
 }
 
 export interface IAuth0Responses {
-  err: IErrorResponse;
+  error: string;
+  errorDescription: string;
+  state: string;
   idToken: any;
   idTokenPayload: any;
   appState: any;
@@ -23,8 +25,4 @@ export interface IAuth0Responses {
 export enum LocalStorageKeys {
   localStorageKey = 'loggedIn',
   loginEvent = 'loginEvent'
-}
-
-export interface IErrorResponse {
-  statusText: string;
 }
