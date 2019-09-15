@@ -1,6 +1,6 @@
 # vue-mov Appollo
 
-    Todo - Add description
+    Work in progress
 
 ## Setup
 
