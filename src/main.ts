@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
+import router from './router/router';
 import { store } from './store/index';
 
 // custom styles
@@ -11,6 +11,7 @@ import '@/assets/styles/main.scss';
 // plugins
 import './plugins/vue-apollo';
 import './plugins/vuesax';
+import './plugins/vuex-persist';
 import AuthPlugin from './plugins/auth0';
 
 import './registerServiceWorker';
