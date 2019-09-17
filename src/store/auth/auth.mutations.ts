@@ -9,12 +9,6 @@ export enum AuthMutationKeys {
   localLogin = 'localLogin'
 }
 
-// this.emit(loginEvent, {
-//   loggedIn: true,
-//   profile: authResult.idTokenPayload,
-//   state: authResult.appState || {}
-// });
-
 const mutations: MutationTree<IAuthState> = {
   localLogin(state: IAuthState, authResult: IAuth0Responses) {
     const tokenExp = new Date(authResult.idTokenPayload.exp * 1000);
@@ -32,8 +26,21 @@ const mutations: MutationTree<IAuthState> = {
   logout(state: IAuthState) {
     state.idToken = '';
     state.profile = {
-      something: '',
-      exp: null
+      aud: '',
+      email: '',
+      email_verified: false,
+      exp: null,
+      family_name: '',
+      given_name: '',
+      iat: '',
+      iss: '',
+      locale: '',
+      name: '',
+      nickname: '',
+      nonce: '',
+      picture: '',
+      sub: '',
+      updated_at: ''
     };
     state.status = 'logged out';
     state.tokenExpiry = 0;
