@@ -1,5 +1,4 @@
 export interface IAuthState {
-  status: string;
   errorMsg: string;
   profile: IProfile;
   idToken: string;

@@ -42,7 +42,6 @@ const mutations: MutationTree<IAuthState> = {
       sub: '',
       updated_at: ''
     };
-    state.status = 'logged out';
     state.tokenExpiry = 0;
     state.isLoggedIn = false;
   },

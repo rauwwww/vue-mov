@@ -1,7 +1,6 @@
 import { IAuthState, IProfile } from './auth.types';
 
 export default class AuthState implements IAuthState {
-  status: string;
   errorMsg: string;
   profile: IProfile;
   idToken: string;
@@ -10,7 +9,6 @@ export default class AuthState implements IAuthState {
   authState: any;
 
   constructor() {
-    this.status = '';
     this.errorMsg = '';
     this.profile = {
       aud: '',
