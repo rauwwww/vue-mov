@@ -3,7 +3,7 @@
     <vs-button @click="openConfirm()" color="success" type="gradient">Alert Primary</vs-button>
   </div>-->
 
-  <vs-button v-if="!isAuthenticated" type="line" @click.prevent="login()">Login</vs-button>
+  <vs-button v-if="!isLoggedIn" type="line" @click.prevent="login()">Login</vs-button>
   <vs-button v-else type="line" @click.prevent="logout()">Logout</vs-button>
 </template>
 
@@ -26,7 +26,7 @@ const AUTH_LOGOUT = [ModuleNames.auth, AuthActionKeys.logOut].join('/');
 })
 export default class Login extends Vue {
   @Provide() activeConfirm: boolean = false;
-  @AUTH.Getter(AuthGetterKeys.isAuthenticated) isAuthenticated!: boolean;
+  @AUTH.Getter(AuthGetterKeys.isLoggedIn) isLoggedIn!: boolean;
 
   login() {
     store.dispatch(AUTH_LOGIN);
