@@ -14,11 +14,8 @@ export class IOemdbApi {
   };
 
   public async oemdbGet(payload: any) {
-    console.log(payload);
     const apiString = await this.generateReqParams(payload);
-    console.log(oemdbBaseUrl + apiString);
     const res = await axios.get(oemdbBaseUrl + apiString);
-    console.log(res);
     return res;
   }
 

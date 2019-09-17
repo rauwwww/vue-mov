@@ -9,8 +9,21 @@ export interface IAuthState {
 }
 
 export interface IProfile {
-  something: any;
+  aud: any;
+  email_verified: boolean;
+  email: string;
   exp: number | null;
+  family_name: string;
+  given_name: string;
+  nickname: string;
+  iat: string;
+  iss: string;
+  locale: string;
+  name: string;
+  nonce: string;
+  picture: string;
+  sub: string;
+  updated_at: string;
 }
 
 export interface IAuth0Responses {

@@ -13,8 +13,21 @@ export default class AuthState implements IAuthState {
     this.status = '';
     this.errorMsg = '';
     this.profile = {
-      something: '',
-      exp: null
+      aud: '',
+      email: '',
+      email_verified: false,
+      exp: null,
+      family_name: '',
+      given_name: '',
+      iat: '',
+      iss: '',
+      locale: '',
+      name: '',
+      nickname: '',
+      nonce: '',
+      picture: '',
+      sub: '',
+      updated_at: ''
     };
     this.authState = '';
     this.idToken = '';

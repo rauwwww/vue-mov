@@ -10,17 +10,24 @@ import { store } from '../store';
 import { AuthActionKeys } from '../store/auth/auth.actions';
 
 const HANDLEAUTH = [ModuleNames.auth, AuthActionKeys.handleAuthentication].join('/');
+const AUTH_DB_INSERT = [ModuleNames.auth, AuthActionKeys.authToDb].join('/');
 
 @Component({
   name: 'Callback',
   components: {}
 })
 export default class Callback extends Vue {
-  mounted() {
-    store.dispatch(HANDLEAUTH).then((data) => {
-      console.log('got here, from then callback');
-      this.$router.push({ name: 'home' });
-    });
+  async mounted() {
+    store
+      .dispatch(HANDLEAUTH)
+      .then(() => {
+        store.dispatch(AUTH_DB_INSERT);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    this.$router.push({ name: 'home' });
   }
 }
 </script>

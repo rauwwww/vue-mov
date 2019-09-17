@@ -5,14 +5,14 @@ import { LocalStorageKeys } from './auth.types';
 
 export enum AuthGetterKeys {
   isAuthenticated = 'isAuthenticated',
-  fullAuth = 'fullAuth'
+  idToken = 'idToken'
 }
 
 export const getters: GetterTree<AuthState, RootState> = {
   isAuthenticated: (state) => {
     return Date.now() < state.tokenExpiry && localStorage.getItem(LocalStorageKeys.localStorageKey) === 'true';
   },
-  fullAuth: (state) => state.idToken
+  idToken: (state) => state.idToken
 };
 
 export default getters;

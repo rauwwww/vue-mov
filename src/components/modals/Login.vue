@@ -17,8 +17,8 @@ import { AuthActionKeys } from '@/store/auth/auth.actions';
 import { AuthGetterKeys } from '@/store/auth/auth.getters';
 
 const AUTH = namespace(ModuleNames.auth);
-const AUTHLOGIN = [ModuleNames.auth, AuthActionKeys.authLogin].join('/');
-const AUTHLOGOUT = [ModuleNames.auth, AuthActionKeys.logOut].join('/');
+const AUTH_LOGIN = [ModuleNames.auth, AuthActionKeys.authLogin].join('/');
+const AUTH_LOGOUT = [ModuleNames.auth, AuthActionKeys.logOut].join('/');
 
 @Component({
   name: 'Login',
@@ -29,10 +29,10 @@ export default class Login extends Vue {
   @AUTH.Getter(AuthGetterKeys.isAuthenticated) isAuthenticated!: boolean;
 
   login() {
-    store.dispatch(AUTHLOGIN);
+    store.dispatch(AUTH_LOGIN);
   }
   logout() {
-    store.dispatch(AUTHLOGOUT);
+    store.dispatch(AUTH_LOGOUT);
   }
   //    openConfirm(){
   //       this.$vs.dialog({

@@ -5,19 +5,18 @@ import { AuthMutationKeys } from './auth.mutations';
 import { LocalStorageKeys } from './auth.types';
 
 import auth0 from 'auth0-js';
-// import authConfig from '../../auth-conf.json';
-
-// import { clientId, domain } from '../../auth-conf.json';
-// import json = require('../static/calls.json');
-// // tslint:disable-next-line:no-var-requires
-// const authConfig = require('../../auth-conf.json');
+import gql from 'graphql-tag';
+import { apolloClient } from '../../plugins/vue-apollo';
 
 export enum AuthActionKeys {
   authLogin = 'authLogin',
+  authToDb = 'authToDb',
   logOut = 'authLogOut',
   handleAuthentication = 'handleAuthentication'
 }
-
+/**
+ * TODO add webauth to env vars
+ */
 // const webAuth = new auth0.WebAuth({
 //   domain: authConfig.domain,
 //   redirectUri: `${window.location.origin}/callback`,
@@ -37,12 +36,45 @@ const webAuth = new auth0.WebAuth({
 export const actions: ActionTree<AuthState, RootState> = {
   async authLogin({  }: ActionContext<AuthState, RootState>, customState: any) {
     try {
-      return webAuth.authorize({
+      webAuth.authorize({
         appState: customState
       });
     } catch (err) {
       return err;
     }
+  },
+  async authToDb({ state }: ActionContext<AuthState, RootState>) {
+    const claimsUrl = 'https://hasura.io/jwt/claims';
+    const hasuraUserId = 'x-hasura-user-id';
+    const userId = state.profile[claimsUrl][hasuraUserId];
+    const nickname = state.profile.nickname;
+
+    const mutation = gql`
+      mutation upsert_user($userId: String!, $nickname: String) {
+        insert_users(
+          objects: [{ auth0_id: $userId, name: $nickname }]
+          on_conflict: { constraint: users_pkey, update_columns: [last_seen, name] }
+        ) {
+          affected_rows
+        }
+      }
+    `;
+
+    /**
+     * TODO when host in prod, run the insert on auth0 service rules
+     */
+    if (process.env.NODE_ENV === 'dev') {
+      console.log('running env is dev adding auth0 userId to local db instance');
+      await apolloClient.mutate({
+        mutation: mutation,
+        variables: {
+          userId: userId,
+          nickname: nickname
+        }
+      });
+    }
+
+    return;
   },
   async authLogOut({ commit }: ActionContext<AuthState, RootState>) {
     // localStorage.removeItem(localStorageKey);
