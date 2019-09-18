@@ -1,53 +1,59 @@
 <template>
-  <div id="parentx">
-    <vs-button @click="isActive =! isActive" color="primary" type="filled">Sidebar</vs-button>
-    <vs-icon icon="mood" class="hover">
-      <span @click="isActive = !isActive"></span>
-    </vs-icon>
+  <div id="parentx" class="m-t-xl">
     <vs-sidebar
+      :reduce="reduce"
+      :reduce-not-rebound="true"
+      :hidden-background="true"
       parent="body"
-      default-index="1"
-      color="primary"
-      class="sidebarx"
+      default-index="-1"
+      color="success"
+      class="sidebarx sidebarxcss m-t-xl"
       spacer
       v-model="isActive"
     >
       <div class="header-sidebar" slot="header">
         <vs-avatar size="70px" src="https://randomuser.me/api/portraits/men/85.jpg" />
-
-        <h4>
-          My Name
-          <vs-button color="primary" icon="more_horiz" type="flat"></vs-button>
-        </h4>
       </div>
-
-      <vs-sidebar-item index="1" icon="question_answer">Dashboard</vs-sidebar-item>
-
-      <vs-sidebar-item index="2" icon="gavel">History</vs-sidebar-item>
+      <vs-sidebar-group open title="Application">
+        <vs-sidebar-item index="1" icon="menu" @click="reduce=!reduce">Toggle Sidebar</vs-sidebar-item>
+        <vs-sidebar-item index="5" icon="verified_user">Configurations</vs-sidebar-item>
+        <vs-sidebar-group title="Store">
+          <vs-sidebar-item index="2.1" icon="store">Store</vs-sidebar-item>
+          <vs-sidebar-item index="2.2" icon="nature_people">Nature</vs-sidebar-item>
+          <vs-sidebar-item index="2.3" icon="style">Style</vs-sidebar-item>
+        </vs-sidebar-group>
+        <vs-sidebar-item index="2" icon="gavel">History</vs-sidebar-item>
+        <vs-sidebar-item index="3" icon="https">Security</vs-sidebar-item>
+        <vs-sidebar-item index="4" icon="help">Help</vs-sidebar-item>
+      </vs-sidebar-group>
 
       <vs-divider icon="person" position="left">User</vs-divider>
 
-      <vs-sidebar-item index="3" icon="verified_user">Configurations</vs-sidebar-item>
-      <vs-sidebar-item index="4" icon="account_box">Profile</vs-sidebar-item>
-      <vs-sidebar-item index="5">Card</vs-sidebar-item>
+      <vs-sidebar-item index="6" icon="account_box">Profile</vs-sidebar-item>
 
       <div class="footer-sidebar" slot="footer">
-        <vs-button icon="reply" color="danger" type="flat">log out</vs-button>
         <vs-button icon="settings" color="primary" type="border"></vs-button>
       </div>
     </vs-sidebar>
   </div>
-
-  <!-- <div
-          class="navbar-burger navbar-start is-pulled-left"
-          @click="showNav = !showNav"
-          :class="{ 'is-active': showNav }"
-  >-->
 </template>
 
 <style lang="scss" scoped>
 .navbar-item {
   color: #4a4a4a !important;
+}
+
+.sidebarxcss {
+  position: fixed;
+  margin-top: 60px;
+  z-index: 9999999;
+}
+
+.vs-sidebar {
+  position: fixed;
+  margin-top: 60px;
+  z-index: 9999999;
+  top: 5 !important;
 }
 </style>
 
@@ -58,7 +64,10 @@ import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
   name: 'SideMenu'
 })
 export default class SideMenu extends Vue {
-  @Provide() isActive: boolean = false;
+  @Provide() isActive: boolean = true;
+  @Provide() notExpand: boolean = false;
+  @Provide() reduce: boolean = true;
   @Prop() isSideMenuActive!: boolean;
+  // @Prob() activeItem;
 }
 </script>

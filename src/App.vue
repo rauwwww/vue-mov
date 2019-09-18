@@ -13,7 +13,11 @@
   text-align: center;
   color: #2c3e50;
 }
+.vs-sidebar {
+  top: 40px !important;
+}
 </style>
+
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
