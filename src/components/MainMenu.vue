@@ -40,7 +40,7 @@
 </style>
 
 <script lang="ts">
-import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
+import { Component, Vue, Provide } from 'vue-property-decorator';
 import SideMenu from './SideMenu.vue';
 import Login from './modals/Login.vue';
 

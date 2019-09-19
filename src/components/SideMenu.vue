@@ -46,7 +46,7 @@
 
 
 <script lang="ts">
-import { Component, Vue, Provide, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 
 @Component({
   name: 'SideMenu'
@@ -57,6 +57,7 @@ export default class SideMenu extends Vue {
   @Provide() reduce: boolean = true;
   @Prop() isSideMenuActive!: boolean;
 
+  // Todo add watcher to append body with the correct with related to sidebar
   // @Watch('reduce')
   // onChildChanged(val: string, oldVal: string) {
   //   console.log(val, oldVal);
