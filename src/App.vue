@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <MainMenu class="m-b-xl" />
-    <router-view />
+    <SideMenu />
+    <div class="m-l-lgg" id="content-body">
+      <MainMenu />
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -13,19 +16,18 @@
   text-align: center;
   color: #2c3e50;
 }
-.vs-sidebar {
-  top: 40px !important;
-}
 </style>
 
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import MainMenu from '@/components/MainMenu.vue';
+import SideMenu from '@/components/SideMenu.vue';
 
 @Component({
   components: {
-    MainMenu
+    MainMenu,
+    SideMenu
   }
 })
 export default class App extends Vue {}

@@ -1,10 +1,6 @@
 <template>
   <div>
-    <vs-navbar class="nabarx m-b-xl">
-      <div slot="title">
-        <h1 class="lala">dsad</h1>
-      </div>
-
+    <vs-navbar class="nabarx body-nav">
       <vs-navbar-item index="0">
         <router-link to="/home" v-slot="{ href, route, navigate, isActive }">
           <a :active="isActive" type="line" :href="href" @click="navigate">{{ route.name }}</a>
@@ -20,9 +16,6 @@
       </vs-navbar-item>
       <vs-input icon="search" placeholder="search" v-model="search" />
     </vs-navbar>
-    <div class="m-t-xl">
-      <SideMenu />
-    </div>
   </div>
 </template>
 
@@ -41,8 +34,8 @@
   display: none;
 }
 
-.sidebar {
-  position: fixed;
+.body-nav {
+  padding: 1.2rem;
 }
 </style>
 

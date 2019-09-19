@@ -1,18 +1,18 @@
 <template>
-  <div id="parentx" class="m-t-xl">
+  <div id="parentx">
     <vs-sidebar
       :reduce="reduce"
       :reduce-not-rebound="true"
       :hidden-background="true"
       parent="body"
-      default-index="-1"
+      default-index="1"
       color="success"
-      class="sidebarx sidebarxcss m-t-xl"
+      class="sidebarx"
       spacer
       v-model="isActive"
     >
       <div class="header-sidebar" slot="header">
-        <vs-avatar size="70px" src="https://randomuser.me/api/portraits/men/85.jpg" />
+        <vs-avatar size="small" src="https://randomuser.me/api/portraits/men/85.jpg" />
       </div>
       <vs-sidebar-group open title="Application">
         <vs-sidebar-item index="1" icon="menu" @click="reduce=!reduce">Toggle Sidebar</vs-sidebar-item>
@@ -42,23 +42,11 @@
 .navbar-item {
   color: #4a4a4a !important;
 }
-
-.sidebarxcss {
-  position: fixed;
-  margin-top: 60px;
-  z-index: 9999999;
-}
-
-.vs-sidebar {
-  position: fixed;
-  margin-top: 60px;
-  z-index: 9999999;
-  top: 5 !important;
-}
 </style>
 
+
 <script lang="ts">
-import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
+import { Component, Vue, Provide, Prop, Watch } from 'vue-property-decorator';
 
 @Component({
   name: 'SideMenu'
@@ -68,6 +56,10 @@ export default class SideMenu extends Vue {
   @Provide() notExpand: boolean = false;
   @Provide() reduce: boolean = true;
   @Prop() isSideMenuActive!: boolean;
-  // @Prob() activeItem;
+
+  // @Watch('reduce')
+  // onChildChanged(val: string, oldVal: string) {
+  //   console.log(val, oldVal);
+  // }
 }
 </script>
