@@ -1,10 +1,10 @@
 import { ActionContext } from 'vuex';
 import MoviesState from '../movies.state';
 import RootState from '../../state';
-import { IOemdbApi, IOemdbReqFor } from '@/lib/oemdbApiHelper';
+import { OemdbApi, IOemdbReqFor } from '@/lib/oemdbApiHelper';
 
 export default async function fetchMovies({  }: ActionContext<MoviesState, RootState>, title: IOemdbReqFor): Promise<any> {
-  const oemdbReq = new IOemdbApi();
+  const oemdbReq = new OemdbApi();
   const testTitle = 'Avatar';
 
   const payload: IOemdbReqFor = {

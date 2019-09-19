@@ -2,6 +2,7 @@ import { GetterTree } from 'vuex';
 import RootState from '../state';
 import AuthState from './auth.state';
 import { LocalStorageKeys } from './auth.types';
+import { DateHelpers } from '@/lib/dateHelpers';
 
 export enum AuthGetterKeys {
   isAuthenticated = 'isAuthenticated',
@@ -9,9 +10,12 @@ export enum AuthGetterKeys {
   isLoggedIn = 'isLoggedIn'
 }
 
+const DATEHELPER = new DateHelpers();
+
 export const getters: GetterTree<AuthState, RootState> = {
   isAuthenticated: (state) => {
-    return Date.now() < state.tokenExpiry && localStorage.getItem(LocalStorageKeys.localStorageKey) === 'true';
+    const isTokenAlive = Date.now() < DATEHELPER.toUnixMillis(state.tokenExpiry);
+    return isTokenAlive && localStorage.getItem(LocalStorageKeys.localStorageKey) === 'true';
   },
   isLoggedIn: (state) => state.isLoggedIn,
   idToken: (state) => state.idToken

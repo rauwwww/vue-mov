@@ -1,23 +1,19 @@
 <template>
   <div>
-    <vs-navbar class="nabarx p-md">
-      <div slot="title">
-        <vs-navbar-title>Hello world</vs-navbar-title>
-      </div>
+    <vs-navbar class="nabarx body-nav">
       <vs-navbar-item index="0">
         <router-link to="/home" v-slot="{ href, route, navigate, isActive }">
-          <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
+          <a :active="isActive" type="line" :href="href" @click="navigate">{{ route.name }}</a>
         </router-link>
       </vs-navbar-item>
       <vs-navbar-item index="1">
         <router-link to="/movies" v-slot="{ href, route, navigate, isActive }">
-          <a :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
+          <a class :active="isActive" :href="href" @click="navigate">{{ route.name }}</a>
         </router-link>
       </vs-navbar-item>
       <vs-navbar-item class="p-l-lg p-r-lg" index="2">
         <login />
       </vs-navbar-item>
-
       <vs-input icon="search" placeholder="search" v-model="search" />
     </vs-navbar>
   </div>
@@ -32,6 +28,14 @@
 }
 .hover:hover {
   cursor: pointer;
+}
+
+.checkbox-true {
+  display: none;
+}
+
+.body-nav {
+  padding: 1.2rem;
 }
 </style>
 
@@ -49,5 +53,16 @@ import Login from './modals/Login.vue';
 })
 export default class MainMenu extends Vue {
   @Provide() search: string = '';
+  isSideBarActive: boolean = false;
+  colorx = '#1db952';
+  indexActive = 0;
+  @Provide() activeItem: number = 0;
+  @Provide() isActive: boolean = true;
+
+  toggleSideMenu() {
+    console.log(this.isSideBarActive);
+    return (this.isSideBarActive = !this.isSideBarActive);
+  }
 }
 </script>
+

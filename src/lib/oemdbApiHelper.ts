@@ -3,7 +3,7 @@ import axios from 'axios';
 const apiKey = process.env.VUE_APP_OEMDB_APIKEY;
 const oemdbBaseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&`;
 
-export class IOemdbApi {
+export class OemdbApi {
   private apiParamPrefix: any = {
     imdbId: '&i=',
     movieTitle: '&t=',
