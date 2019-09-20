@@ -6,7 +6,7 @@
       :hidden-background="true"
       parent="body"
       default-index="1"
-      color="success"
+      color="primary"
       class="sidebarx"
       spacer
       v-model="isActive"
