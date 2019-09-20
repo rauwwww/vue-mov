@@ -12,8 +12,9 @@
       v-model="isActive"
     >
       <div class="header-sidebar" slot="header">
-        <vs-avatar size="small" src="https://randomuser.me/api/portraits/men/85.jpg" />
+        <vs-avatar size="small" :src="hasProfilePicture" />
       </div>
+
       <vs-sidebar-group open title="Application">
         <vs-sidebar-item index="1" icon="menu" @click="reduce=!reduce">Toggle Sidebar</vs-sidebar-item>
         <vs-sidebar-item index="5" icon="verified_user">Configurations</vs-sidebar-item>
@@ -47,15 +48,30 @@
 
 <script lang="ts">
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
+import { namespace } from 'vuex-class';
+import { ModuleNames } from '../store/types';
+import { AuthActionKeys } from '../store/auth/auth.actions';
+import { AuthGetterKeys } from '../store/auth/auth.getters';
+import { IAuthProfile } from '../store/auth/auth.types';
+
+const AUTH = namespace(ModuleNames.auth);
 
 @Component({
   name: 'SideMenu'
 })
 export default class SideMenu extends Vue {
+  @AUTH.Getter(AuthGetterKeys.isAuthenticated) isAuthenticated!: boolean;
+  @AUTH.Getter(AuthGetterKeys.authProfile) authProfile!: IAuthProfile;
   @Provide() isActive: boolean = true;
   @Provide() notExpand: boolean = false;
   @Provide() reduce: boolean = true;
   @Prop() isSideMenuActive!: boolean;
+
+  get hasProfilePicture() {
+    const { isAuthenticated, authProfile } = this;
+
+    return isAuthenticated && authProfile.picture ? authProfile.picture : '@/assets/images/profilePh.png';
+  }
 
   // Todo add watcher to append body with the correct with related to sidebar
   // @Watch('reduce')

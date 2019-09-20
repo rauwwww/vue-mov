@@ -1,8 +1,8 @@
-import { IAuthState, IProfile } from './auth.types';
+import { IAuthState, IAuthProfile } from './auth.types';
 
 export default class AuthState implements IAuthState {
   errorMsg: string;
-  profile: IProfile;
+  profile: IAuthProfile;
   idToken: string;
   tokenExpiry: any;
   isLoggedIn: boolean;

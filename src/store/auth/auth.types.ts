@@ -1,13 +1,13 @@
 export interface IAuthState {
   errorMsg: string;
-  profile: IProfile;
+  profile: IAuthProfile;
   idToken: string;
   tokenExpiry: any;
   isLoggedIn: boolean;
   authState: any;
 }
 
-export interface IProfile {
+export interface IAuthProfile {
   aud: any;
   email_verified: boolean;
   email: string;

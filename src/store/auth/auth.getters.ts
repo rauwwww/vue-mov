@@ -7,7 +7,8 @@ import { DateHelpers } from '@/lib/dateHelpers';
 export enum AuthGetterKeys {
   isAuthenticated = 'isAuthenticated',
   idToken = 'idToken',
-  isLoggedIn = 'isLoggedIn'
+  isLoggedIn = 'isLoggedIn',
+  authProfile = 'authProfile'
 }
 
 const DATEHELPER = new DateHelpers();
@@ -18,7 +19,8 @@ export const getters: GetterTree<AuthState, RootState> = {
     return isTokenAlive && localStorage.getItem(LocalStorageKeys.localStorageKey) === 'true';
   },
   isLoggedIn: (state) => state.isLoggedIn,
-  idToken: (state) => state.idToken
+  idToken: (state) => state.idToken,
+  authProfile: (state) => state.profile
 };
 
 export default getters;
