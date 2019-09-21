@@ -47,7 +47,6 @@
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { ModuleNames } from '../store/types';
-import { AuthActionKeys } from '../store/auth/auth.actions';
 import { AuthGetterKeys } from '../store/auth/auth.getters';
 import { IAuthProfile } from '../store/auth/auth.types';
 
