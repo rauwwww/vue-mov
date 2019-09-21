@@ -1,8 +1,6 @@
 <template>
   <div id="parentx">
     <vs-sidebar
-      :reduce="reduce"
-      :reduce-not-rebound="true"
       :hidden-background="true"
       parent="body"
       default-index="1"
@@ -11,8 +9,8 @@
       spacer
       v-model="isActive"
     >
-      <div class="header-sidebar" slot="header">
-        <vs-avatar size="small" :src="hasProfilePicture" />
+      <div class="header-sidebar" slot="header" style="display:block">
+        <vs-avatar size="medium" :src="hasProfilePicture" />
       </div>
 
       <vs-sidebar-group open title="Application">
@@ -42,6 +40,10 @@
 <style lang="scss" scoped>
 .navbar-item {
   color: #4a4a4a !important;
+}
+
+.con-vs-avatar {
+  margin-left: 50px !important;
 }
 </style>
 

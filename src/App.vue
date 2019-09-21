@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <SideMenu />
-    <div class="m-l-lgg" id="content-body">
-      <MainMenu />
+    <div class="m-l-xxxl" id="content-body">
+      <TopMenu />
       <router-view />
     </div>
   </div>
@@ -16,17 +16,21 @@
   text-align: center;
   color: #2c3e50;
 }
+
+.vs-sidebar {
+  max-width: 9rem !important;
+}
 </style>
 
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import MainMenu from '@/components/MainMenu.vue';
+import TopMenu from '@/components/TopMenu.vue';
 import SideMenu from '@/components/SideMenu.vue';
 
 @Component({
   components: {
-    MainMenu,
+    TopMenu,
     SideMenu
   }
 })

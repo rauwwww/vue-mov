@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vs-navbar class="nabarx body-nav">
+    <vs-navbar class="nabarx p-md">
       <vs-navbar-item index="0">
         <router-link to="/home" v-slot="{ href, route, navigate, isActive }">
           <a :active="isActive" type="line" :href="href" @click="navigate">{{ route.name }}</a>
@@ -33,10 +33,6 @@
 .checkbox-true {
   display: none;
 }
-
-.body-nav {
-  padding: 1.2rem;
-}
 </style>
 
 <script lang="ts">
@@ -45,13 +41,13 @@ import SideMenu from './SideMenu.vue';
 import Login from './modals/Login.vue';
 
 @Component({
-  name: 'MainMenu',
+  name: 'TopMenu',
   components: {
     SideMenu,
     Login
   }
 })
-export default class MainMenu extends Vue {
+export default class TopMenu extends Vue {
   @Provide() search: string = '';
   isSideBarActive: boolean = false;
   colorx = '#1db952';
