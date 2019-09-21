@@ -1,6 +1,6 @@
 <template>
-  <div class="m-xl">
-    <h1 class="m-t-lg">Movies</h1>
+  <div>
+    <h1>Movies</h1>
 
     <vs-button
       class="m-t-lg m-r-lg"
