@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="m-t-lg m-b-lg">Home</h1>
+    <h1 class="m-b-lg">Home</h1>
     <NewsHeader />
     <vs-button class="m-t-lg m-r-lg" color="primary" type="filled">SomeCTA</vs-button>
   </div>

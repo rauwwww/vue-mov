@@ -3,7 +3,15 @@
     <SideMenu />
     <div class="m-l-xxxl" id="content-body">
       <TopMenu />
-      <router-view />
+      <transition
+        name="fade"
+        mode="out-in"
+        @beforeLeave="beforeLeave"
+        @enter="enter"
+        @afterEnter="afterEnter"
+      >
+        <router-view class="m-t-lg" />
+      </transition>
     </div>
   </div>
 </template>
@@ -20,6 +28,18 @@
 .vs-sidebar {
   max-width: 9rem !important;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-property: height, opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
 
 
@@ -34,6 +54,24 @@ import SideMenu from '@/components/SideMenu.vue';
     SideMenu
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  prevHeight: any = 0;
+
+  beforeLeave(element: any) {
+    this.prevHeight = getComputedStyle(element).height;
+  }
+  enter(element: any) {
+    const { height } = getComputedStyle(element);
+
+    element.style.height = this.prevHeight;
+
+    setTimeout(() => {
+      element.style.height = height;
+    });
+  }
+  afterEnter(element: any) {
+    element.style.height = 'auto';
+  }
+}
 </script>
 
