@@ -33,6 +33,13 @@
 .checkbox-true {
   display: none;
 }
+
+@media screen and (max-width: 800px) {
+  .vs-navbar {
+    display: block;
+    padding: 0.8rem;
+  }
+}
 </style>
 
 <script lang="ts">
