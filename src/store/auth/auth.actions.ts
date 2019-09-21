@@ -49,7 +49,7 @@ export const actions: ActionTree<AuthState, RootState> = {
     const userId = state.profile[claimsUrl][hasuraUserId];
     const nickname = state.profile.nickname;
 
-    const mutation = gql`
+    const upsertUser = gql`
       mutation upsert_user($userId: String!, $nickname: String) {
         insert_users(
           objects: [{ auth0_id: $userId, name: $nickname }]
@@ -66,7 +66,7 @@ export const actions: ActionTree<AuthState, RootState> = {
     if (process.env.NODE_ENV === 'dev') {
       console.log('running env is dev adding auth0 userId to local db instance');
       await apolloClient.mutate({
-        mutation: mutation,
+        mutation: upsertUser,
         variables: {
           userId: userId,
           nickname: nickname
