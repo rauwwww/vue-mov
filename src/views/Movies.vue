@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Movies</h1>
+    <ViewTitle />
 
     <vs-button
       class="m-t-lg m-r-lg"
@@ -21,13 +21,15 @@ import { MoviesActionKeys } from '@/store/movies/movies.actions';
 import { store } from '@/store';
 
 import MoviesList from '@/components/movies/MoviesList.vue';
+import ViewTitle from '../components/ViewTitle.vue';
 
 const OEMDBAPIACTION = [ModuleNames.movies, MoviesActionKeys.fetchOemdbMovies].join('/');
 
 @Component({
   name: 'Movies',
   components: {
-    MoviesList
+    MoviesList,
+    ViewTitle
   }
 })
 export default class Movies extends Vue {

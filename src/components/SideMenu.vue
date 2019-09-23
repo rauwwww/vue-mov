@@ -46,9 +46,9 @@
 <script lang="ts">
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import { ModuleNames } from '../store/types';
-import { AuthGetterKeys } from '../store/auth/auth.getters';
-import { IAuthProfile } from '../store/auth/auth.types';
+import { ModuleNames } from '@/store/types';
+import { AuthGetterKeys } from '@/store/auth/auth.getters';
+import { IAuthProfile } from '@/store/auth/auth.types';
 
 const AUTH = namespace(ModuleNames.auth);
 
@@ -67,6 +67,12 @@ export default class SideMenu extends Vue {
     const { isAuthenticated, authProfile } = this;
 
     return isAuthenticated && authProfile.picture ? authProfile.picture : '@/assets/images/profilePh.png';
+  }
+
+  get userActiveCollections() {
+    // Todo add subscriped col as menu/route items
+
+    return;
   }
 
   // Todo add watcher to append body with the correct with related to sidebar

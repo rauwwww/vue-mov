@@ -2,7 +2,7 @@ import { GetterTree } from 'vuex';
 import RootState from '../state';
 import AuthState from './auth.state';
 import { LocalStorageKeys } from './auth.types';
-import { DateHelpers } from '@/lib/dateHelpers';
+import { DateHelpers } from '@/utils/dateHelpers';
 
 export enum AuthGetterKeys {
   isAuthenticated = 'isAuthenticated',

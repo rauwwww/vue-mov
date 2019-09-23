@@ -1,23 +1,23 @@
 <template>
   <div>
+    <!-- WIP -->
     <ViewTitle />
-    <NewsHeader />
-    <vs-button class="m-t-lg m-r-lg" color="primary" type="filled">SomeCTA</vs-button>
+    <DashboardInfoBoxes />
   </div>
 </template>
 
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import NewsHeader from '../components/NewsHeader.vue';
+import DashboardInfoBoxes from '../components/DashboardInfoBoxes.vue';
 import ViewTitle from '../components/ViewTitle.vue';
 
 @Component({
-  name: 'Home',
+  name: 'Dashboard',
   components: {
-    NewsHeader,
+    DashboardInfoBoxes,
     ViewTitle
   }
 })
-export default class Home extends Vue {}
+export default class Dashboard extends Vue {}
 </script>

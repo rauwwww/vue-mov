@@ -2,10 +2,22 @@
   <!-- <div class="centerx">
     <vs-button @click="openConfirm()" color="success" type="gradient">Alert Primary</vs-button>
   </div>-->
+  <div>
+    <vs-button v-if="!isAuthenticated" type="line" @click.prevent="login()">Login</vs-button>
+    <!-- TODO add login icon?? -->
+    <!-- <span>
+        <vs-icon class="hover p-t-md" icon="vpn_key" size="small" round></vs-icon>
+    </span>-->
 
-  <vs-button v-if="!isAuthenticated" type="line" @click.prevent="login()">Login</vs-button>
-  <vs-button v-else type="line" @click.prevent="logout()">Logout</vs-button>
+    <vs-button v-else type="line" @click.prevent="logout()">Logout</vs-button>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.hover:hover {
+  cursor: pointer;
+}
+</style>
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';

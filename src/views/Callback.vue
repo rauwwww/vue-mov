@@ -27,7 +27,7 @@ export default class Callback extends Vue {
         console.log(err);
       });
 
-    this.$router.push({ name: 'home' });
+    this.$router.push({ name: 'dashboard' });
   }
 }
 </script>
