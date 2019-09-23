@@ -30,6 +30,7 @@
 .checkbox-true {
   display: none;
 }
+
 @media screen and (max-width: 800px) {
   .vs-navbar {
     display: block;
@@ -41,7 +42,7 @@
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import SideMenu from './SideMenu.vue';
-import Login from './modals/Login.vue';
+import Login from './forms/Login.vue';
 @Component({
   name: 'TopMenu',
   components: {

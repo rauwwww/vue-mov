@@ -13,12 +13,14 @@
         <vs-avatar size="medium" :src="hasProfilePicture" />
       </div>
 
-      <vs-sidebar-group open title="Application">
-        <vs-sidebar-item index="5" icon="verified_user">Configurations</vs-sidebar-item>
+      <CreateList class="padding-temp-fix" />
 
-        <vs-sidebar-item index="2" icon="gavel">History</vs-sidebar-item>
-        <vs-sidebar-item index="3" icon="https">Security</vs-sidebar-item>
-        <vs-sidebar-item index="4" icon="help">Help</vs-sidebar-item>
+      <vs-sidebar-group open title="My Lists">
+        <vs-sidebar-item index="5" icon="movie_creation">Random</vs-sidebar-item>
+
+        <vs-sidebar-item index="2" icon="menu_book">History</vs-sidebar-item>
+        <vs-sidebar-item index="3" icon="subject">Security</vs-sidebar-item>
+        <vs-sidebar-item index="4" icon="subject">Code</vs-sidebar-item>
       </vs-sidebar-group>
 
       <vs-divider icon="person" position="left">User</vs-divider>
@@ -40,6 +42,10 @@
 .con-vs-avatar {
   margin-left: 50px !important;
 }
+
+.padding-temp-fix {
+  margin-top: -10px !important;
+}
 </style>
 
 
@@ -49,11 +55,15 @@ import { namespace } from 'vuex-class';
 import { ModuleNames } from '@/store/types';
 import { AuthGetterKeys } from '@/store/auth/auth.getters';
 import { IAuthProfile } from '@/store/auth/auth.types';
+import CreateList from './forms/CreateList.vue';
 
 const AUTH = namespace(ModuleNames.auth);
 
 @Component({
-  name: 'SideMenu'
+  name: 'SideMenu',
+  components: {
+    CreateList
+  }
 })
 export default class SideMenu extends Vue {
   @AUTH.Getter(AuthGetterKeys.isAuthenticated) isAuthenticated!: boolean;
