@@ -22,7 +22,7 @@ import { Component, Vue } from 'vue-property-decorator';
 })
 export default class CreateListButton extends Vue {
   showCreateList() {
-    this.$modal.show('CreateListModal');
+    this.$modal.show('CreateListItemModal');
   }
 }
 </script>

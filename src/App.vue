@@ -10,9 +10,9 @@
         @enter="enter"
         @afterEnter="afterEnter"
       >
-        <router-view class="m-t-lg" />
+        <router-view class="m-t-lg p-l-sm p-r-sm" />
       </transition>
-      <CreateListModal />
+      <CreateListItemModal />
     </div>
   </div>
 </template>
@@ -48,13 +48,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import TopMenu from '@/components/TopMenu.vue';
 import SideMenu from '@/components/SideMenu.vue';
-import CreateListModal from './components/modals/CreateListModal.vue';
+import CreateListItemModal from './components/modals/CreateListItemModal.vue';
 
 @Component({
   components: {
     TopMenu,
     SideMenu,
-    CreateListModal
+    CreateListItemModal
   }
 })
 export default class App extends Vue {
