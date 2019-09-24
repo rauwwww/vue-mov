@@ -12,6 +12,7 @@
       >
         <router-view class="m-t-lg" />
       </transition>
+      <CreateListModal />
     </div>
   </div>
 </template>
@@ -47,11 +48,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import TopMenu from '@/components/TopMenu.vue';
 import SideMenu from '@/components/SideMenu.vue';
+import CreateListModal from './components/modals/CreateListModal.vue';
 
 @Component({
   components: {
     TopMenu,
-    SideMenu
+    SideMenu,
+    CreateListModal
   }
 })
 export default class App extends Vue {

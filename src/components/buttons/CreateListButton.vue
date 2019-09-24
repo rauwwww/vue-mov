@@ -1,12 +1,11 @@
 <template>
   <div vs-align="center" vs-type="flex" vs-justify="center">
-    <vs-button @click.prevent="create()">
+    <vs-button @click.prevent="showCreateList()">
       <vs-icon class="hover p-t-md" icon="playlist_add" size="small" round></vs-icon>
       <h4>New list</h4>
     </vs-button>
   </div>
 </template>
-
 <style lang="scss" scoped>
 .vs-button {
   border-radius: 0px !important;
@@ -18,12 +17,12 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-  name: 'CreateList',
+  name: 'CreateListButton',
   components: {}
 })
-export default class CreateList extends Vue {
-  create() {
-    return;
+export default class CreateListButton extends Vue {
+  showCreateList() {
+    this.$modal.show('CreateListModal');
   }
 }
 </script>

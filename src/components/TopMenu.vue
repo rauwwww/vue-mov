@@ -2,15 +2,20 @@
   <div>
     <vs-navbar class="nabarx p-md">
       <vs-navbar-item index="0">
+        <router-link to="home" v-slot="{ href, route, navigate, isActive }">
+          <a class :active="isActive" :href="href" @click="navigate">{{ route.meta.display }}</a>
+        </router-link>
+      </vs-navbar-item>
+      <vs-navbar-item index="1">
         <router-link to="dashboard" v-slot="{ href, route, navigate, isActive }">
           <a class :active="isActive" :href="href" @click="navigate">{{ route.meta.display }}</a>
         </router-link>
       </vs-navbar-item>
-      <vs-navbar-item class="p-l-lg" index="1">
+      <vs-navbar-item class="p-l-lg" index="2">
         <vs-input icon="search" placeholder="search" v-model="search" />
       </vs-navbar-item>
 
-      <vs-navbar-item class="p-l-lg p-r-lg" index="2">
+      <vs-navbar-item class="p-l-lg p-r-lg" index="3">
         <login />
       </vs-navbar-item>
     </vs-navbar>

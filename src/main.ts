@@ -12,6 +12,7 @@ import '@/assets/styles/main.scss';
 import './plugins/vue-apollo';
 import './plugins/vuesax';
 import './plugins/vuex-persist';
+import './plugins/vue-js-modal';
 import AuthPlugin from './plugins/auth0';
 
 import './registerServiceWorker';

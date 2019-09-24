@@ -13,7 +13,7 @@
         <vs-avatar size="medium" :src="hasProfilePicture" />
       </div>
 
-      <CreateList class="padding-temp-fix" />
+      <CreateListButton class="padding-temp-fix" />
 
       <vs-sidebar-group open title="My Lists">
         <vs-sidebar-item index="5" icon="movie_creation">Random</vs-sidebar-item>
@@ -55,14 +55,14 @@ import { namespace } from 'vuex-class';
 import { ModuleNames } from '@/store/types';
 import { AuthGetterKeys } from '@/store/auth/auth.getters';
 import { IAuthProfile } from '@/store/auth/auth.types';
-import CreateList from './forms/CreateList.vue';
+import CreateListButton from './buttons/CreateListButton.vue';
 
 const AUTH = namespace(ModuleNames.auth);
 
 @Component({
   name: 'SideMenu',
   components: {
-    CreateList
+    CreateListButton
   }
 })
 export default class SideMenu extends Vue {
