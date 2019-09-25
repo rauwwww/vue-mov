@@ -59,8 +59,6 @@ import { Component } from 'vue-property-decorator';
 import BaseModal from './BaseModal';
 import { store } from '@/store';
 import { GlobalActionKeys } from '@/store/actions';
-import gql from 'graphql-tag';
-import { State } from 'vuex-class';
 
 @Component({
   name: 'CreateListItemModal',

@@ -6,7 +6,6 @@ import { HttpLink } from 'apollo-link-http';
 import { LocalStorageKeys } from '../store/auth/auth.types';
 import { ApolloClient } from 'apollo-client';
 import { setContext } from 'apollo-link-context';
-import { onError } from 'apollo-link-error';
 
 Vue.use(VueApollo);
 // Name of the localStorage item
