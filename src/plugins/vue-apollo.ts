@@ -3,18 +3,29 @@ import VueApollo from 'vue-apollo';
 
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
-// import { ApolloLink } from 'apollo-link';
+import { LocalStorageKeys } from '../store/auth/auth.types';
 import { ApolloClient } from 'apollo-client';
+import { setContext } from 'apollo-link-context';
+import { onError } from 'apollo-link-error';
 
-// Install the vue plugin
 Vue.use(VueApollo);
-
 // Name of the localStorage item
 const AUTH_TOKEN = 'apollo-token';
 
 // You can use `https` for secure connection (recommended in production)
 const httpLink = new HttpLink({
   uri: process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:8080/v1/graphql'
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(LocalStorageKeys.auth0Token) || null;
+
+  return {
+    headers: {
+      ...headers,
+      authorization: `Bearer ${token}`
+    }
+  };
 });
 
 // Config
@@ -35,7 +46,7 @@ const defaultOptions = {
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
-  link: httpLink,
+  link: authLink.concat(httpLink),
 
   // Override default cache
   cache: new InMemoryCache(),
@@ -58,7 +69,6 @@ export const apolloClient = new ApolloClient({
   ...defaultOptions
 });
 
-// Call this in the Vue app file
 export function createProvider(options: any = {}) {
   // Create apollo client
 
