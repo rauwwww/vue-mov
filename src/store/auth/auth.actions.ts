@@ -43,10 +43,8 @@ export const actions: ActionTree<AuthState, RootState> = {
       return err;
     }
   },
-  async authToDb({ state }: ActionContext<AuthState, RootState>) {
-    const claimsUrl = 'https://hasura.io/jwt/claims';
-    const hasuraUserId = 'x-hasura-user-id';
-    const userId = state.profile[claimsUrl][hasuraUserId];
+  async authToDb({ state, getters }: ActionContext<AuthState, RootState>) {
+    const userId = getters.authUserId;
     const nickname = state.profile.nickname;
 
     const upsertUser = gql`
