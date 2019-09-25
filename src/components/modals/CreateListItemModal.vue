@@ -1,28 +1,34 @@
 
 <template>
-  <modal name="CreateListItemModal" :width="300" :height="300">
-    <vs-row class="p-md" vs-align="flex-end" vs-type="flex" vs-justify="space-between" vs-w="12">
-      <b>some form</b>
-      <h1>HELLO</h1>
-      <vs-select class="selectExample" label="Figuras" v-model="select1">
-        <vs-select-item
-          :key="item.id"
-          :value="item.value"
-          :text="item.text"
-          v-for="item in options1"
-        />
-      </vs-select>
-      <vs-select class="selectExample" label="Figuras" v-model="select2">
-        <vs-select-item
-          :key="item.id"
-          :value="item.value"
-          :text="item.text"
-          v-for="item in options2"
-        />
-      </vs-select>
+  <modal name="CreateListItemModal" :width="400" :height="350">
+    <vs-row class="p-md" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <h1>Create List</h1>
+      </vs-col>
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-select class="m-t-lg" label="Type" v-model="select1">
+          <vs-select-item
+            :key="item.id"
+            :value="item.value"
+            :text="item.text"
+            v-for="item in selectOptions"
+          />
+        </vs-select>
+      </vs-col>
+      <vs-col vs-type="flex" class="m-t-sm" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-input class="inputx" placeholder="Name" v-model="name" />
+      </vs-col>
+      <vs-col class="m-t-md" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-textarea label="Description" v-model="textarea" />
+      </vs-col>
     </vs-row>
     <div class="bottom-content p-md">
-      <vs-button size="large" class="m-r-md">Add</vs-button>
+      <vs-button
+        size="large"
+        color="success"
+        class="m-r-md"
+        @click.prevent="createNewListItem()"
+      >Add</vs-button>
       <vs-button size="large" color="danger" @click.prevent="closeModal()">Close</vs-button>
     </div>
   </modal>
@@ -35,14 +41,6 @@
   bottom: 0;
 }
 
-.selectExample {
-  margin: 10px;
-}
-.con-select-example {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .con-select .vs-select {
   width: 100%;
 }
@@ -59,18 +57,26 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 import BaseModal from './BaseModal';
+import { store } from '@/store';
+import { GlobalActionKeys } from '@/store/actions';
+import gql from 'graphql-tag';
+import { State } from 'vuex-class';
 
 @Component({
   name: 'CreateListItemModal',
   components: {}
 })
 export default class CreateListItemModal extends BaseModal {
-  title: string = 'string';
   modalName: string = 'CreateListItemModal';
   select1Normal: string = '';
   select1: string = '2';
+  textarea: string = '';
+  name: string = '';
 
-  options1: any = [{ text: 'IT', value: 0 }, { text: 'Blade Runner', value: 2 }, { text: 'Thor Ragnarok', value: 3 }];
-  options2: any = [{ text: 'IT', value: 0 }, { text: 'Blade Runner', value: 2 }, { text: 'Thor Ragnarok', value: 3 }];
+  selectOptions: any = [{ text: 'Movies', value: 0 }, { text: 'Articles', value: 1 }, { text: 'Books', value: 3 }];
+
+  createNewListItem() {
+    store.dispatch(GlobalActionKeys.createNewListItem, this.selectOptions);
+  }
 }
 </script>
