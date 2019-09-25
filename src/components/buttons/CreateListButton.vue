@@ -1,6 +1,6 @@
 <template>
   <div vs-align="center" vs-type="flex" vs-justify="center">
-    <vs-button @click.prevent="showCreateList()">
+    <vs-button color="success" @click.prevent="showCreateList()">
       <vs-icon class="hover p-t-md" icon="playlist_add" size="small" round></vs-icon>
       <h4>New list</h4>
     </vs-button>
@@ -22,7 +22,7 @@ import { Component, Vue } from 'vue-property-decorator';
 })
 export default class CreateListButton extends Vue {
   showCreateList() {
-    this.$modal.show('CreateListModal');
+    this.$modal.show('CreateListItemModal');
   }
 }
 </script>

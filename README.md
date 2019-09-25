@@ -19,6 +19,7 @@ Build, Compiles and hot-reloads for development:
 ```sh
 $ yarn
 $ yarn serve
+$ http://localhost:8081/
 ```
 
 ### Run Graphql serv Docker image

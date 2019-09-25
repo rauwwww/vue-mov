@@ -2,7 +2,7 @@
   <div>
     <ViewTitle />
     <NewsHeader />
-    <vs-button class="m-t-lg m-r-lg" color="primary" type="filled">SomeCTA</vs-button>
+    <vs-button class="m-t-lg m-r-lg" color="success">SomeCTA</vs-button>
   </div>
 </template>
 

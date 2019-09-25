@@ -8,7 +8,8 @@ export enum AuthGetterKeys {
   isAuthenticated = 'isAuthenticated',
   idToken = 'idToken',
   isLoggedIn = 'isLoggedIn',
-  authProfile = 'authProfile'
+  authProfile = 'authProfile',
+  authUserId = 'authUserId'
 }
 
 const DATEHELPER = new DateHelpers();
@@ -20,7 +21,8 @@ export const getters: GetterTree<AuthState, RootState> = {
   },
   isLoggedIn: (state) => state.isLoggedIn,
   idToken: (state) => state.idToken,
-  authProfile: (state) => state.profile
+  authProfile: (state) => state.profile,
+  authUserId: (state) => state.profile['https://hasura.io/jwt/claims']['x-hasura-user-id']
 };
 
 export default getters;

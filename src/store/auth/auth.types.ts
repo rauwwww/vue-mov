@@ -36,5 +36,6 @@ export interface IAuth0Responses {
 
 export enum LocalStorageKeys {
   localStorageKey = 'loggedIn',
-  loginEvent = 'loginEvent'
+  loginEvent = 'loginEvent',
+  auth0Token = 'auth0Token'
 }

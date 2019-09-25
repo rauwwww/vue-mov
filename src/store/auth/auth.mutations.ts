@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex';
 import AuthState from './auth.state';
-import { IAuthState, IAuth0Responses } from './auth.types';
+import { IAuthState, IAuth0Responses, LocalStorageKeys } from './auth.types';
 
 export enum AuthMutationKeys {
   logout = 'logout',
@@ -12,6 +12,8 @@ export enum AuthMutationKeys {
 const mutations: MutationTree<IAuthState> = {
   localLogin(state: IAuthState, authResult: IAuth0Responses) {
     const tokenExp = new Date(authResult.idTokenPayload.exp * 1000);
+
+    localStorage.setItem(LocalStorageKeys.auth0Token, authResult.idToken);
 
     state.idToken = authResult.idToken;
     state.profile = authResult.idTokenPayload;

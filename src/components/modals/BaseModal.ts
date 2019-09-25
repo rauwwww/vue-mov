@@ -13,7 +13,6 @@ export default class BaseModal extends Vue {
   }
 
   closeModal() {
-    console.log('got here');
     this.$modal.hide(this.modalName);
     this.onClose();
   }

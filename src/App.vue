@@ -10,51 +10,25 @@
         @enter="enter"
         @afterEnter="afterEnter"
       >
-        <router-view class="m-t-lg" />
+        <router-view class="m-t-lg p-l-sm p-r-sm" />
       </transition>
-      <CreateListModal />
+      <CreateListItemModal />
     </div>
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-.vs-sidebar {
-  max-width: 9rem !important;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.3s;
-  transition-property: opacity;
-  transition-property: height, opacity;
-  transition-timing-function: ease;
-}
-
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-</style>
-
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import TopMenu from '@/components/TopMenu.vue';
 import SideMenu from '@/components/SideMenu.vue';
-import CreateListModal from './components/modals/CreateListModal.vue';
+import CreateListItemModal from './components/modals/CreateListItemModal.vue';
+import '@/assets/styles/app.scss';
 
 @Component({
   components: {
     TopMenu,
     SideMenu,
-    CreateListModal
+    CreateListItemModal
   }
 })
 export default class App extends Vue {
