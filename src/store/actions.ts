@@ -2,7 +2,7 @@ import { ActionTree, ActionContext } from 'vuex';
 import RootState from './state';
 import { GlobalMutationKeys } from './mutations';
 import gql from 'graphql-tag';
-import { apolloClient, createProvider } from '../plugins/vue-apollo';
+import { apolloClient } from '../plugins/vue-apollo';
 
 export enum GlobalActionKeys {
   fetchRootData = 'fetchRootData',
@@ -27,24 +27,18 @@ export const actions: ActionTree<RootState, RootState> = {
   },
   async createNewListItem({ commit, state }: ActionContext<RootState, RootState>, obj: CreateCol) {
     const userId = state.auth.profile['https://hasura.io/jwt/claims']['x-hasura-user-id'];
-    //  const name = obj.name;
+
     const name = 'movie';
     const type = 'movies';
-    //  const sendObj: CreateCol = {
-    //    name: 'movie',
-    //    description: 'descriptiong test descriptiongdescriptiong',
-    //    user_id: userId
-    //  };
-    //  console.log(userId);
 
     const insertCollectionItem = gql`
-      mutation insert_collections($userId: String, $name: String!, $type: String!) {
+      mutation insert_collections($userId: String, $name: String!, $type: collection_types!) {
         insert_collections(objects: [{ user_id: $userId, name: $name, type: $type }]) {
           affected_rows
         }
       }
     `;
-    await createProvider.mutate({
+    await apolloClient.mutate({
       mutation: insertCollectionItem,
       variables: {
         userId,
