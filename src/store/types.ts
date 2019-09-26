@@ -5,12 +5,18 @@ export interface IRootState {
   frontPageText: string;
   movies: IMoviesState;
   auth: IAuthState;
+  queryResult: IQueryResults;
 }
 
 export enum ModuleNames {
   user = 'user',
   movies = 'movies',
   auth = 'auth'
+}
+
+export interface IQueryResults {
+  success: string;
+  err: string;
 }
 
 export interface WindowStorage {

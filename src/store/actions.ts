@@ -1,8 +1,10 @@
 import { ActionTree, ActionContext } from 'vuex';
 import RootState from './state';
 import { GlobalMutationKeys } from './mutations';
-import gql from 'graphql-tag';
 import { apolloClient } from '../plugins/vue-apollo';
+import addCollection from '@/graphql/collections/AddCollection.gql';
+import CollectionQueries from '@/graphql/collections/CollectionQueries';
+import { ICollection } from '@/graphql/collections/CollectionTypes';
 
 export enum GlobalActionKeys {
   fetchRootData = 'fetchRootData',
@@ -28,24 +30,21 @@ export const actions: ActionTree<RootState, RootState> = {
   async createNewListItem({ commit, state }: ActionContext<RootState, RootState>, obj: CreateCol) {
     const userId = state.auth.profile['https://hasura.io/jwt/claims']['x-hasura-user-id'];
 
-    const name = 'movie';
-    const type = 'movies';
+    const collectionPayload: ICollection = {
+      name: 'movie',
+      type: 'moviesss',
+      description: 'LALAL',
+      user_id: userId
+    };
 
-    const insertCollectionItem = gql`
-      mutation insert_collections($userId: String, $name: String!, $type: collection_types!) {
-        insert_collections(objects: [{ user_id: $userId, name: $name, type: $type }]) {
-          affected_rows
-        }
-      }
-    `;
-    await apolloClient.mutate({
-      mutation: insertCollectionItem,
-      variables: {
-        userId,
-        name,
-        type
-      }
-    });
+    await CollectionQueries.addCollection(collectionPayload)
+      .then(() => {
+        commit(GlobalMutationKeys.setQuerySucces);
+      })
+      .catch((err) => {
+        console.log(err);
+        commit(GlobalMutationKeys.setQueryErr, err);
+      });
 
     return;
   }

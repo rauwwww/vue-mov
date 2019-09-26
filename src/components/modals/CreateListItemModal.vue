@@ -5,8 +5,8 @@
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <h1>Create List</h1>
       </vs-col>
-      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-select class="m-t-lg" label="Type" v-model="select1">
+      <vs-col class="m-t-lg" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-select label="Type" v-model="select1">
           <vs-select-item
             :key="item.id"
             :value="item.value"
@@ -15,7 +15,13 @@
           />
         </vs-select>
       </vs-col>
-      <vs-col vs-type="flex" class="m-t-sm" vs-justify="center" vs-align="center" vs-w="12">
+      <vs-col
+        vs-type="flex"
+        class="m-t-sm input-width"
+        vs-justify="center"
+        vs-align="center"
+        vs-w="12"
+      >
         <vs-input class="inputx" placeholder="Name" v-model="name" />
       </vs-col>
       <vs-col class="m-t-md" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -41,8 +47,12 @@
   bottom: 0;
 }
 
-.con-select .vs-select {
-  width: 100%;
+.con-select {
+  width: 100% !important;
+}
+
+.vs-input-primary {
+  width: 100% !important;
 }
 @media (max-width: 550px) {
   .con-select {
