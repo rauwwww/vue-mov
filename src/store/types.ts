@@ -6,6 +6,7 @@ export interface IRootState {
   movies: IMoviesState;
   auth: IAuthState;
   queryResponse: IQueryResponse;
+  userCollections: any;
 }
 
 export enum ModuleNames {

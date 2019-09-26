@@ -3,6 +3,17 @@ import { apolloClient } from '../../plugins/vue-apollo';
 import { ICollection } from './CollectionTypes';
 
 export default class CollectionQueries {
+  readonly getUserCollections = gql`
+    query collections {
+      collections {
+        id
+        name
+        type
+        user_id
+      }
+    }
+  `;
+
   static async addCollection(addCollectionItem: ICollection) {
     const userId = addCollectionItem.user_id;
     const name = addCollectionItem.name;

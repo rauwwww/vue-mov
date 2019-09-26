@@ -7,6 +7,7 @@ export default class RootState implements IRootState {
   movies!: IMoviesState;
   auth!: IAuthState;
   queryResponse!: IQueryResponse;
+  userCollections!: any;
 
   constructor() {
     this.frontPageText = '';
@@ -14,5 +15,6 @@ export default class RootState implements IRootState {
       err: '',
       success: ''
     };
+    this.userCollections = {};
   }
 }

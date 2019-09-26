@@ -4,7 +4,8 @@ import { IRootState } from './types';
 export enum GlobalMutationKeys {
   setFrontPageText = 'setFrontPageText',
   setQuerySucces = 'setQuerySucces',
-  setQueryErr = 'setQueryErr'
+  setQueryErr = 'setQueryErr',
+  setUserCollections = 'setUserCollections'
 }
 
 export const mutations: MutationTree<IRootState> = {
@@ -18,5 +19,8 @@ export const mutations: MutationTree<IRootState> = {
   setQueryErr(state: IRootState, resp: any) {
     state.queryResponse.success = '';
     state.queryResponse.err = resp.Error;
+  },
+  setUserCollections(state: IRootState, resp: any) {
+    state.userCollections = resp.collections;
   }
 };

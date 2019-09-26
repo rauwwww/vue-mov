@@ -3,10 +3,14 @@ import RootState from './state';
 import { GlobalMutationKeys } from './mutations';
 import CollectionQueries from '@/graphql/collections/CollectionQueries';
 import { ICollection } from '@/graphql/collections/CollectionTypes';
+import { apolloClient } from '../plugins/vue-apollo';
+
+const COLLECTION_QUERIES = new CollectionQueries();
 
 export enum GlobalActionKeys {
   fetchRootData = 'fetchRootData',
-  createNewListItem = 'createNewListItem'
+  createNewListItem = 'createNewListItem',
+  fetchUserCollections = 'fetchUserCollections'
 }
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -35,6 +39,20 @@ export const actions: ActionTree<RootState, RootState> = {
       })
       .catch((err) => {
         commit(GlobalMutationKeys.setQueryErr, err);
+      });
+
+    return;
+  },
+  async fetchUserCollections({ commit }: ActionContext<RootState, RootState>, userId: string) {
+    apolloClient
+      .query({
+        query: COLLECTION_QUERIES.getUserCollections
+      })
+      .then((res) => {
+        commit(GlobalMutationKeys.setUserCollections, res.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
     return;
