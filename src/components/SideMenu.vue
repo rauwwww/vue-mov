@@ -1,5 +1,5 @@
 <template>
-  <div id="parentx">
+  <div v-if="userActiveCollections" id="parentx">
     <vs-sidebar
       :hidden-background="true"
       parent="body"
@@ -16,11 +16,17 @@
       <CreateListButton class="padding-temp-fix" />
 
       <vs-sidebar-group open title="My Lists">
-        <vs-sidebar-item index="5" icon="movie_creation">Random</vs-sidebar-item>
+        <vs-sidebar-item
+          v-for="item in userMenuTopType"
+          :key="item.id"
+          :index="item.index"
+          :icon="MenuIcons(item)"
+          :to="item"
+        >{{item}}</vs-sidebar-item>
 
-        <vs-sidebar-item index="2" icon="menu_book">History</vs-sidebar-item>
+        <!-- <vs-sidebar-item index="2" icon="menu_book">History</vs-sidebar-item>
         <vs-sidebar-item index="3" icon="subject">Security</vs-sidebar-item>
-        <vs-sidebar-item index="4" icon="subject">Code</vs-sidebar-item>
+        <vs-sidebar-item index="4" icon="subject">Code</vs-sidebar-item>-->
       </vs-sidebar-group>
 
       <vs-divider icon="person" position="left">User</vs-divider>
@@ -51,11 +57,18 @@
 
 <script lang="ts">
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
-import { namespace } from 'vuex-class';
+import { namespace, Getter } from 'vuex-class';
 import { ModuleNames } from '@/store/types';
 import { AuthGetterKeys } from '@/store/auth/auth.getters';
 import { IAuthProfile } from '@/store/auth/auth.types';
 import CreateListButton from './buttons/CreateListButton.vue';
+import { store } from '../store';
+import { GlobalActionKeys } from '../store/actions';
+import { GlobalGetterKeys } from '../store/getters';
+import { ICollection } from '../graphql/collections/CollectionTypes';
+
+import _uniq from 'lodash/uniq';
+import _map from 'lodash/map';
 
 const AUTH = namespace(ModuleNames.auth);
 
@@ -68,9 +81,12 @@ const AUTH = namespace(ModuleNames.auth);
 export default class SideMenu extends Vue {
   @AUTH.Getter(AuthGetterKeys.isAuthenticated) isAuthenticated!: boolean;
   @AUTH.Getter(AuthGetterKeys.authProfile) authProfile!: IAuthProfile;
+  @AUTH.Getter(AuthGetterKeys.authUserId) authUserId!: IAuthProfile;
+  @Getter(GlobalGetterKeys.userCollections) userCollection!: ICollection[];
   @Provide() isActive: boolean = true;
   @Provide() notExpand: boolean = false;
   @Provide() reduce: boolean = true;
+  @Provide() userMenuTopType: any = [];
   @Prop() isSideMenuActive!: boolean;
 
   get hasProfilePicture() {
@@ -80,9 +96,27 @@ export default class SideMenu extends Vue {
   }
 
   get userActiveCollections() {
-    // Todo add subscriped col as menu/route items
+    this.userMenuTopType = _uniq(_map(this.userCollection, 'type'));
 
-    return;
+    return true;
+  }
+
+  MenuIcons(type: any) {
+    switch (type) {
+      case 'movies': {
+        return 'movie_creation';
+      }
+      case 'articles': {
+        return 'subject';
+      }
+      case 'books': {
+        return 'menu_book';
+      }
+    }
+    // movie_creation
+  }
+  created() {
+    store.dispatch(GlobalActionKeys.fetchUserCollections, this.authUserId);
   }
 
   // Todo add watcher to append body with the correct with related to sidebar
