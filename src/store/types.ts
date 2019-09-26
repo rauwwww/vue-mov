@@ -5,7 +5,7 @@ export interface IRootState {
   frontPageText: string;
   movies: IMoviesState;
   auth: IAuthState;
-  queryResult: IQueryResults;
+  queryResponse: IQueryResponse;
 }
 
 export enum ModuleNames {
@@ -14,7 +14,7 @@ export enum ModuleNames {
   auth = 'auth'
 }
 
-export interface IQueryResults {
+export interface IQueryResponse {
   success: string;
   err: string;
 }

@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex';
-import { IRootState, IQueryResults } from './types';
+import { IRootState } from './types';
 
 export enum GlobalMutationKeys {
   setFrontPageText = 'setFrontPageText',
@@ -12,14 +12,11 @@ export const mutations: MutationTree<IRootState> = {
     state.frontPageText = resp;
   },
   setQuerySucces(state: IRootState) {
-    console.log('got here');
-
-    state.queryResult.success = 'sucess';
-    state.queryResult.err = '';
+    state.queryResponse.success = 'success';
+    state.queryResponse.err = '';
   },
   setQueryErr(state: IRootState, resp: any) {
-    console.log(resp);
-    state.queryResult.success = '';
-    state.queryResult.err = resp;
+    state.queryResponse.success = '';
+    state.queryResponse.err = resp.Error;
   }
 };

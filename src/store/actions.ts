@@ -32,7 +32,7 @@ export const actions: ActionTree<RootState, RootState> = {
 
     const collectionPayload: ICollection = {
       name: 'movie',
-      type: 'moviesss',
+      type: 'movies',
       description: 'LALAL',
       user_id: userId
     };
@@ -42,7 +42,6 @@ export const actions: ActionTree<RootState, RootState> = {
         commit(GlobalMutationKeys.setQuerySucces);
       })
       .catch((err) => {
-        console.log(err);
         commit(GlobalMutationKeys.setQueryErr, err);
       });
 

@@ -1,4 +1,4 @@
-import { IRootState, IQueryResults } from './types';
+import { IRootState, IQueryResponse } from './types';
 import { IMoviesState } from './movies/movies.types';
 import { IAuthState } from './auth/auth.types';
 
@@ -6,11 +6,11 @@ export default class RootState implements IRootState {
   frontPageText: string;
   movies!: IMoviesState;
   auth!: IAuthState;
-  queryResult!: IQueryResults;
+  queryResponse!: IQueryResponse;
 
   constructor() {
     this.frontPageText = '';
-    this.queryResult = {
+    this.queryResponse = {
       err: '',
       success: ''
     };
