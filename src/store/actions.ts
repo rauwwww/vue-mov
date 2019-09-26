@@ -1,20 +1,12 @@
 import { ActionTree, ActionContext } from 'vuex';
 import RootState from './state';
 import { GlobalMutationKeys } from './mutations';
-import { apolloClient } from '../plugins/vue-apollo';
-import addCollection from '@/graphql/collections/AddCollection.gql';
 import CollectionQueries from '@/graphql/collections/CollectionQueries';
 import { ICollection } from '@/graphql/collections/CollectionTypes';
 
 export enum GlobalActionKeys {
   fetchRootData = 'fetchRootData',
   createNewListItem = 'createNewListItem'
-}
-
-export interface CreateCol {
-  name: string;
-  description: string;
-  user_id: any;
 }
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -27,13 +19,13 @@ export const actions: ActionTree<RootState, RootState> = {
     commit(GlobalMutationKeys.setFrontPageText, apiRes);
     return 'succesfully fetched root action';
   },
-  async createNewListItem({ commit, state }: ActionContext<RootState, RootState>, obj: CreateCol) {
+  async createNewListItem({ commit, state }: ActionContext<RootState, RootState>, obj: ICollection) {
     const userId = state.auth.profile['https://hasura.io/jwt/claims']['x-hasura-user-id'];
 
     const collectionPayload: ICollection = {
-      name: 'movie',
-      type: 'movies',
-      description: 'LALAL',
+      name: obj.name,
+      type: obj.type,
+      description: obj.description,
       user_id: userId
     };
 

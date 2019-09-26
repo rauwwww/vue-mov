@@ -6,7 +6,7 @@
         <h1>Create List</h1>
       </vs-col>
       <vs-col class="m-t-lg" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-select label="Type" v-model="select1">
+        <vs-select label="Type" v-model="createListForm.type">
           <vs-select-item
             :key="item.id"
             :value="item.value"
@@ -22,10 +22,10 @@
         vs-align="center"
         vs-w="12"
       >
-        <vs-input class="inputx" placeholder="Name" v-model="name" />
+        <vs-input class="inputx" placeholder="Name" name="name" v-model="createListForm.name" />
       </vs-col>
       <vs-col class="m-t-md" vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-textarea label="Description" v-model="textarea" />
+        <vs-textarea label="Description" name="description" v-model="createListForm.description" />
       </vs-col>
     </vs-row>
     <div class="bottom-content p-md">
@@ -76,15 +76,28 @@ import { GlobalActionKeys } from '@/store/actions';
 })
 export default class CreateListItemModal extends BaseModal {
   modalName: string = 'CreateListItemModal';
-  select1Normal: string = '';
-  select1: string = '2';
-  textarea: string = '';
-  name: string = '';
 
-  selectOptions: any = [{ text: 'Movies', value: 0 }, { text: 'Articles', value: 1 }, { text: 'Books', value: 3 }];
+  createListForm: any = {
+    name: '',
+    description: '',
+    type: ''
+  };
+
+  selectOptions: any = [{ text: 'Movies', value: 'movies' }, { text: 'Articles', value: 'articles' }, { text: 'Books', value: 'books' }];
 
   createNewListItem() {
-    store.dispatch(GlobalActionKeys.createNewListItem, this.selectOptions);
+    store
+      .dispatch(GlobalActionKeys.createNewListItem, this.createListForm)
+      .then(() => {
+        this.createListForm = {
+          name: '',
+          description: '',
+          select: ''
+        };
+      })
+      .finally(() => {
+        this.$modal.hide(this.modalName);
+      });
   }
 }
 </script>
