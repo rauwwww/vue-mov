@@ -48,10 +48,34 @@ export const routeMovies = {
   component: () => import(/* webpackChunkName: "about" */ '@/views/Movies.vue')
 };
 
+export const routeArticles = {
+  path: '/articles',
+  name: 'articles',
+  meta: { display: 'Articles', title: 'Articles' },
+  component: () => import(/* webpackChunkName: "about" */ '@/views/Articles.vue')
+};
+
+export const routeBooks = {
+  path: '/books',
+  name: 'books',
+  meta: { display: 'Books', title: 'Books' },
+  component: () => import(/* webpackChunkName: "about" */ '@/views/Books.vue')
+};
+
 export const routeCallBack = {
   path: '/callback',
   name: 'callback',
   component: Callback
 };
 
-export const routes = [routeHome, routeAbout, routeMovies, routeCallBack, routeCatchall, routeUserBooks, routeDashboard];
+export const routes = [
+  routeHome,
+  routeAbout,
+  routeMovies,
+  routeArticles,
+  routeBooks,
+  routeCallBack,
+  routeCatchall,
+  routeUserBooks,
+  routeDashboard
+];
