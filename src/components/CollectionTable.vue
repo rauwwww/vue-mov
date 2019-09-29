@@ -7,7 +7,7 @@
         </span>
       </vs-col>
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="8" vs-sm="4" vs-xs="12">
-        <h4>table</h4>
+        <h2>Articles - sublist</h2>
       </vs-col>
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="2" vs-sm="4" vs-xs="12">
         <label>{{ isPublic }}</label>
