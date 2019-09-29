@@ -2,6 +2,7 @@
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
   text-align: center;
   color: #2c3e50;
 }
@@ -20,4 +21,15 @@
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.page {
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  z-index: 5;
+  background: #fdfdfd;
+  display: block;
+  min-height: 80vh;
 }
