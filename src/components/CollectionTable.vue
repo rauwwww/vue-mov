@@ -10,7 +10,8 @@
         <h4>table</h4>
       </vs-col>
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="2" vs-sm="4" vs-xs="12">
-        <vs-button vs-justify>hello</vs-button>
+        <label>{{ isPublic }}</label>
+        <vs-switch class="m-l-sm" v-model="switch1" />
       </vs-col>
     </vs-row>
     <div class="p-lg">
@@ -78,6 +79,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 })
 export default class CollectionTable extends Vue {
   @Prop() title!: string;
+  switch1: boolean = false;
 
   users: any[] = [
     {
@@ -98,6 +100,10 @@ export default class CollectionTable extends Vue {
 
   mounted() {
     return console.log(this.$router.currentRoute.name);
+  }
+
+  get isPublic() {
+    return this.switch1 ? 'Public' : 'Hidden';
   }
 }
 </script>
