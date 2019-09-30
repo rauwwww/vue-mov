@@ -1,19 +1,18 @@
-FROM node:10-alpine
+FROM node:carbon-slim
+# vue-cli reqires 8.10.0+ 
 
-# Create app directory
-WORKDIR /usr/src/app
+RUN apt-get -y update \
+    && apt-get install -y git
 
-# Copying package.json and package-lock.json using a wildcard
-COPY package*.json ./
-# Install app dependencies
-RUN yarn
+RUN npm install -g @vue/cli
 
-COPY . .
+WORKDIR /target/in/container
 
 EXPOSE 8080
 
-CMD ["yarn", "serve"]
+USER node
 
+CMD ["yarn", "serve"]
 
 #### RUN ####
 
