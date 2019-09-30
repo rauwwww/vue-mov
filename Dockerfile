@@ -6,7 +6,7 @@ RUN apt-get -y update \
 
 RUN npm install -g @vue/cli
 
-WORKDIR /target/in/container
+WORKDIR /usr/src/app
 
 EXPOSE 8080
 
