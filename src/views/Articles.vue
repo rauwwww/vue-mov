@@ -1,6 +1,7 @@
 <template>
   <div>
-    <CollectionTable class="p-t-md" />
+    <ViewTitle />
+    <CollectionTable />
   </div>
 </template>
 

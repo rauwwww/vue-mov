@@ -3,11 +3,11 @@
     <vs-row vs-w="12">
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="2" vs-sm="4" vs-xs="12">
         <span>
-          <vs-icon size="large" icon="post_add" color="green"></vs-icon>
+          <vs-icon size="medium" icon="post_add" color="green"></vs-icon>
         </span>
       </vs-col>
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="8" vs-sm="4" vs-xs="12">
-        <h2>Articles - sublist</h2>
+        <h2>- sublist</h2>
       </vs-col>
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="2" vs-sm="4" vs-xs="12">
         <label>{{ isPublic }}</label>
