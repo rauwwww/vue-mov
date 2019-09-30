@@ -16,13 +16,15 @@
       <CreateListButton class="padding-temp-fix" />
 
       <vs-sidebar-group open title="My Lists">
-        <vs-sidebar-item
-          v-for="item in userMenuTopType"
-          :key="item.id"
-          :index="item.index"
-          :icon="MenuIcons(item)"
-          :to="item"
-        >{{item}}</vs-sidebar-item>
+        <div v-if="isAuthenticated">
+          <vs-sidebar-item
+            v-for="item in userMenuTopType"
+            :key="item.id"
+            :index="item.index"
+            :icon="MenuIcons(item)"
+            :to="item"
+          >{{item}}</vs-sidebar-item>
+        </div>
 
         <!-- <vs-sidebar-item index="2" icon="menu_book">History</vs-sidebar-item>
         <vs-sidebar-item index="3" icon="subject">Security</vs-sidebar-item>
@@ -89,6 +91,10 @@ export default class SideMenu extends Vue {
   @Provide() userMenuTopType: any = [];
   @Prop() isSideMenuActive!: boolean;
 
+  created() {
+    store.dispatch(GlobalActionKeys.fetchUserCollections, this.authUserId);
+  }
+
   get hasProfilePicture() {
     const { isAuthenticated, authProfile } = this;
 
@@ -115,14 +121,5 @@ export default class SideMenu extends Vue {
     }
     // movie_creation
   }
-  created() {
-    store.dispatch(GlobalActionKeys.fetchUserCollections, this.authUserId);
-  }
-
-  // Todo add watcher to append body with the correct with related to sidebar
-  // @Watch('reduce')
-  // onChildChanged(val: string, oldVal: string) {
-  //   console.log(val, oldVal);
-  // }
 }
 </script>

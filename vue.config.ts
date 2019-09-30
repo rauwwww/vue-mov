@@ -1,4 +1,5 @@
 import { config } from './graphqlTransform';
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   pluginOptions: {
@@ -8,7 +9,7 @@ module.exports = {
     }
   },
   configureWebpack: {
-    plugins: [config]
+    plugins: [config, new ForkTsCheckerWebpackPlugin()]
   },
   transpileDependencies: ['vuex-persist']
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="m-b-xl">
+  <div class="p-b-lg p-t-lg">
     <h1>{{routeTitle}}</h1>
   </div>
 </template>

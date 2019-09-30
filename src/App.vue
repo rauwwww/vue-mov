@@ -10,7 +10,7 @@
         @enter="enter"
         @afterEnter="afterEnter"
       >
-        <router-view class="m-t-lg p-l-sm p-r-sm" />
+        <router-view class="m-t-lg m-l-xl m-r-xl page" />
       </transition>
       <CreateListItemModal />
     </div>
