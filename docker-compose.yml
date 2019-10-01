@@ -6,9 +6,12 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - 3000:3000
       - 8081:8081
+    stdin_open: true
+    tty: true
     command: yarn serve
+    environment:
+      - CHOKIDAR_USEPOLLING=true
   postgres:
     image: postgres
     restart: always
