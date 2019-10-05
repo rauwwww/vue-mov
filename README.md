@@ -12,7 +12,14 @@ yarn
 
 Install the dependencies and devDependencies and start the server.
 
-### Run Frontend project
+### Run Application
+runs frontend /8081 and backend /8080
+```sh
+$ docker-compose up
+```
+
+
+### Run Frontend project without docker (optional)
 
 Build, Compiles and hot-reloads for development:
 
