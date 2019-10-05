@@ -1,7 +1,10 @@
 version: '3.6'
 services:
   frontend-app:
-    build: .
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: frontend-vue
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
@@ -12,8 +15,9 @@ services:
     command: yarn serve
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=dev
   postgres:
-    image: postgres
+    image: postgres:11
     restart: always
     volumes:
       - db_data:/var/lib/postgresql/data

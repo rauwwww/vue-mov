@@ -12,7 +12,7 @@ module.exports = {
     plugins: [config, new ForkTsCheckerWebpackPlugin()]
   },
   devServer: {
-    public: '<docker_host_external_ip>:8080'
+    public: '<docker_host_external_ip>:8081'
     // watchOptions: {
     //   ignored: /node_modules/,
     //   aggregateTimeout: 300,
