@@ -1,4 +1,4 @@
-FROM node:lts-alpine as build-stage
+FROM node:latest
 # vue-cli reqires 8.10.0+ 
 
 # set working directory
@@ -20,8 +20,8 @@ CMD ["yarn", "serve"]
 
 #### RUN ####
 
-# docker build -t frontend-app .
-# docker run -it -p 8000:8081 frontend-ap
+# docker build -t vue-mov_frontend-app_1 .
+# docker run -it -p 8000:8081 vue-mov_frontend-app_1
 
 # production stage
 # https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html#Real-World-Example

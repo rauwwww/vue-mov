@@ -1,36 +1,20 @@
 version: '3.6'
 services:
-  frontend-app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: frontend-vue
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - '8081'
-    stdin_open: true
-    tty: true
-    command: yarn serve
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-      - NODE_ENV=dev
   postgres:
     image: postgres:11
     restart: always
     volumes:
-      - db_data:/var/lib/postgresql/data
+    - db_data:/var/lib/postgresql/data
   graphql-engine:
-    image: hasura/graphql-engine:v1.0.0-beta.6
+    image: hasura/graphql-engine:v1.0.0-beta.8
     ports:
-      - '8080'
+    - "8080:8080"
     depends_on:
-      - 'postgres'
+    - "postgres"
     restart: always
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
-      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS512", "key": "-----BEGIN CERTIFICATE-----\nMIIDDTCCAfWgAwIBAgIJbaVCDwxWQwjIMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNV\nBAMTGWRldi13Z2Uxb3NndC5ldS5hdXRoMC5jb20wHhcNMTkwOTEyMjA1ODI4WhcN\nMzMwNTIxMjA1ODI4WjAkMSIwIAYDVQQDExlkZXYtd2dlMW9zZ3QuZXUuYXV0aDAu\nY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr9TPhM5E0HRQUkG6\nNY1lScVEgQtz/T3HFe8e4iuh2iwj9V46VLMrrKwhWLQzP6vsLuy9lyNR4fePM7Oc\nNdiRE7VUNOnz4mJxDtFTC3jSxmumU6pP/IF1JnfYhECgdRDlq9rsUUubdsPKLQRB\n9Groh+Ioij+p+46sxsv2TZz8wqNxHW5GdSLKyuHHCLX68L4vAzHomLCZxiHCZ/Iz\ntAlVEDSkOc3L9514TsKiYQnHazWt1lCkccoZw4RQ5BrXbYouCr+A7agXEKC0jkUq\nveCw4YNb+XxXkYsc5FNQwFgH4EhcsmH6NJJe6iubPKpWffObtVsJA9Iy+HqJQlpm\ngStGUwIDAQABo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBScj9mtB/iq\nYAyoE5ET3FNKhq0DDTAOBgNVHQ8BAf8EBAMCAoQwDQYJKoZIhvcNAQELBQADggEB\nAFnar9nUfcCMWJGSsZsLPrhzcCZ9ZYMa4QSka8GuBumes680/oD/A2cNWJGJVgHN\nsMZsw5qifxzKK9/VOv++HJx5sHz3XroU3Hz0SvMkDpJPO7+zVGg3kP51k3VkfnPJ\n5Aj3JRsiDZLVP+0PRelXeyZKe/VDTPgxhU1LE+q0Kizrruf74Rtmvd36P6RtN0lx\n/0/idy1gHuoxaB7a/1o6HzD/hL4wL3cgLQGu88Mwsj/qxS2YR6FR1f/1Kqgmc/CG\nQ8/WvbVQStuxAMLqjj2/sog2Y6Dq8AkLYTkDnUEiPgeOYyuU1JjScNpTMbXhi0BJ\nTSGd0jncOQY96vnUaOkPli4=\n-----END CERTIFICATE-----\n"}'
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
